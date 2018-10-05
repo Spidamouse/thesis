@@ -4,6 +4,8 @@
 
 \label{Chapter 5} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+In the following chapter the issues discovered in matrix mode are outlined, analyised and then the solutions to the problems are described. This begins with the serial interface locking issue and then moves onto the uart monitor, matrix mode compositor handshaking issue. The letterboxing implementation is then discussed and the chapter is ended with the smaller bug fixes to matrix mode.
+
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -199,14 +201,23 @@ As the matrix mode display was still exceeding the desired bounds, a limiting si
   \label{fig:letterbox}
 \end{figure}
 
+%----------------------------------------------------------------------------------------
+%	SECTION 4
+%----------------------------------------------------------------------------------------
+
+\section{Bug Fixing}
+
+\label{Ch5 Sec3}
+
+In addition to the matrix mode break bugs solved in sections \ref{Ch5 Sec1} and \ref{Ch5 Sec2}, there included 
 
 %-----------------------------------
-%	SUBSECTION 3
+%	SUBSECTION 1
 %-----------------------------------
 
 \subsection{Revolving Line}
 
-\label{Ch5 Sec2 Sub3}
+\label{Ch5 Sec3 Sub1}
 
 While restoring functionality to matrix mode it was noted that the input was not behaving as expected. A seen in figure \ref{fig:matrixmodelineinputerror}, whenever the cursor would go to a new line while scrolling it would move left one horizontal space. This resulted in the line revolving around the screen, this is believed to be due to under-flowing the horizontal position variable. Further examination of the variable, as seen in figure \ref{fig:revolvinglinezero} and figure \ref{fig:revolvinglineone}, show that during the new line handling while scrolling the cursor position is just rolled back to the start of the line. This does not take into account the full-stop used as an indication character at the start of each new line. The correction, as seen in figure \ref{fig:scrollline}, addresses this issue by starting the scrolled cursor position one increment to the right of the start of the line.
 
@@ -238,22 +249,13 @@ While restoring functionality to matrix mode it was noted that the input was not
   \label{fig:scrollline}
 \end{figure}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 4
-%----------------------------------------------------------------------------------------
-
-\section{Bug Fixing}
-
-\label{Ch5 Sec3}
-
-
 %-----------------------------------
-%	SUBSECTION 1
+%	SUBSECTION 2
 %-----------------------------------
 
 \subsection{Bell Issue}
 
-\label{Ch5 Sec3 Sub1}
+\label{Ch5 Sec3 Sub2}
 
 During experimentation with the input to matrix mode it was noted that a strange character was being printed whenever the buffer overflowed. This character was intended to be the non printable bell character that would alert the user to an illegal action. This character can be seen as the "plus" symbols in figure \ref{fig:bellcharacter}. Examining the character output to the matrix mode compositor during when these bell characters were being output revealed that the key code being output was x"07". An examination of the available keycodes showed that there was no case for this particular keycode. In order to stop this character from being printed, a case was added to handle it, as seen in figure \ref{fig:ignorebell}. This case would do nothing when it detected the bell character, this allowed for the character to be used later, while also preventing it from being printed. This introduced another error however, whenever a bell character was recognised it would lock up the input to matrix mode. This was due to the terminal emulator never being ready. Examination of the other cases showed that they all set terminal\_emulator\_fast to high after they had performed their case specific action. Implementing this, as seen in figure \ref{fig:newbell}, in the new case statement resulted in the issue being resolved.
 
@@ -279,12 +281,12 @@ During experimentation with the input to matrix mode it was noted that a strange
 \end{figure}
 
 %-----------------------------------
-%	SUBSECTION 2
+%	SUBSECTION 3
 %-----------------------------------
 
 \subsection{Pixel Shift}
 
-\label{Ch5 Sec3 Sub2}
+\label{Ch5 Sec3 Sub3}
 
 When examining the characters displayed to the screen, as noted in figure \ref{fig:biterror}, it was noted that some of them had their right most pixels wrapped around to the very left of the of the character tile. This output, as seen in figure \ref{fig:charbitstwo}, is due to the char\_bits variable. Tracing this variable back to its source revealed, as seen in figure \ref{fig:charbits}, that the bits for each character were being rotated around and used to decide whether to display a pixel or not. As the issue was a horizontal rotation, a rotation of the character bits was performed, as seen in figure \ref{fig:bitfix}. This fixed the pixel shift issue.
 
