@@ -1,6 +1,6 @@
 % Chapter Template
 
-\chapter{Secure Compartmentilization} % Main chapter title
+\chapter{Secure Compartmentalisation} % Main chapter title
 
 \label{Chapter 6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
@@ -14,7 +14,7 @@ This chapter goes over the frame work for how secure compartments will be implem
 
 \label{Ch6 Sec1}
 
-Thanks to the work of Tim Kirby, a frame work was provided for the operation of the secure compartments of the phone, as seen in figure \ref{fig:timkirby}. From this diagram, the finite state machine seen in figure \ref{fig:securecompartmentsfsm} was created and the state transistion actions were noted. As seen in both figures \ref{fig:timkirby} and \ref{fig:securecompartmentsfsm}, inititally the user begins in the insecure user mode. This user mode is then halted via a hypervisor trap that causes the io registers and the RAM and ROM of the phone to be saved to the SD card. The non-transfer section of RAM and all of ROM are then erased. From one of the save-state slots on the SD card, the desired secure service is then loaded into ROM. As soon as this is finished matrix mode is triggered and the CPU is halted. Matrix mode causes all external input into the phone, apart from the keyboard, to be cut off. At this point the user is able to inspect ROM and the transfer area of RAM. If the user is satisfied, by typing "ACCEPT" the secure service is then allowed to execute with the data provided in the transfer area of RAM. If the user is dissatisfied, by typing "REJECT" the secure service is erased from ROM, matrix mode is then left and the CPU is resumed. The hypervisor then uses the save-state created immidiately prior to entering matrix mode to restore the io registers and load all the data that was saved back into RAM and ROM. If the secure container was accepted, any additional trap to the hypervisor will be seen as an exit request from the secure container. During an exit request, the user will once again be prompted to inspect the transfer area of RAM and then accept or reject the escaping of the of that data from the secure container. If satisfied, by typing "ACCEPT" the non-transfer section if RAM and all of ROM are once again erased. Then matrix mode is left and, identically to the user rejecting entry into the secure container, the CPU is resumed. The hypervisor then loads the save-state created immidiately prior to entering matrix mode from the SD card, which is used to restore the io registers and reload data back into non-transfer RAM and ROM. If the user is dissatisfied with data escaping the secure container, by typing "REJECT" all of RAM and all of ROM are erased before the matrix mode exit. Then the save-state is loaded identically to the accepted exit case by the hypervisor and the resumed CPU. Finally, an exit status flag is raised depending on how the secure service transaction went.
+Thanks to the work of Tim Kirby, a frame work was provided for the operation of the secure compartments of the phone, as seen in figure \ref{fig:timkirby}. From this diagram, the finite state machine seen in figure \ref{fig:securecompartmentsfsm} was created and the state transition actions were noted. As seen in both figures \ref{fig:timkirby} and \ref{fig:securecompartmentsfsm}, initially the user begins in the insecure user mode. This user mode is then halted via a hypervisor trap that causes the io registers and the RAM and ROM of the phone to be saved to the SD card. The non-transfer section of RAM and all of ROM are then erased. From one of the save-state slots on the SD card, the desired secure service is then loaded into ROM. As soon as this is finished matrix mode is triggered and the CPU is halted. Matrix mode causes all external input into the phone, apart from the keyboard, to be cut off. At this point the user is able to inspect ROM and the transfer area of RAM. If the user is satisfied, by typing "ACCEPT" the secure service is then allowed to execute with the data provided in the transfer area of RAM. If the user is dissatisfied, by typing "REJECT" the secure service is erased from ROM, matrix mode is then left and the CPU is resumed. The hypervisor then uses the save-state created immediately prior to entering matrix mode to restore the io registers and load all the data that was saved back into RAM and ROM. If the secure container was accepted, any additional trap to the hypervisor will be seen as an exit request from the secure container. During an exit request, the user will once again be prompted to inspect the transfer area of RAM and then accept or reject the escaping of the of that data from the secure container. If satisfied, by typing "ACCEPT" the non-transfer section if RAM and all of ROM are once again erased. Then matrix mode is left and, identically to the user rejecting entry into the secure container, the CPU is resumed. The hypervisor then loads the save-state created immediately prior to entering matrix mode from the SD card, which is used to restore the io registers and reload data back into non-transfer RAM and ROM. If the user is dissatisfied with data escaping the secure container, by typing "REJECT" all of RAM and all of ROM are erased before the matrix mode exit. Then the save-state is loaded identically to the accepted exit case by the hypervisor and the resumed CPU. Finally, an exit status flag is raised depending on how the secure service transaction went.
 
 \begin{figure}
   \centering
@@ -31,7 +31,7 @@ Thanks to the work of Tim Kirby, a frame work was provided for the operation of 
 
 \label{Ch6 Sec2}
 
-In order to test the functionality of compartmentilization, we needed to load a dummy program that would call for a secure container from the SD card in the phone. This presented issues as the SD card would not read corectly. In addition there were timing issues and sections would not build correctly due to the lack of maintainence.
+In order to test the functionality of compartmentalisation, we needed to load a dummy program that would call for a secure container from the SD card in the phone. This presented issues as the SD card would not read correctly. In addition there were timing issues and sections would not build correctly due to the lack of maintenance.
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -42,7 +42,7 @@ In order to test the functionality of compartmentilization, we needed to load a 
 
 As a new section of the project was being worked on the 
 
-Timing issues needed to be repaired again, these lead to more errors apparently being found in the cpu itself.
+Timing issues needed to be repaired again, these lead to more errors apparently being found in the CPU itself.
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -69,8 +69,8 @@ For the ffd3680 register:
 1 = end reset
 2 = read
 
-It is believed that the deselect state in the sdcard.vhdl was casuing the read errors for the sdhc. Look into the SDSC card deselect protocols to determine the difference between the two.
+It is believed that the deselect state in the sdcard.vhdl was causing the read errors for the sdhc. Look into the SDSC card deselect protocols to determine the difference between the two.
 
-When attempting to format the SDSC card and error occured after the read of sector 76000000. This is believed to be the final sector. This error does not occur when readin from the sdhc card.
+When attempting to format the SDSC card and error occur ed after the read of sector 76000000. This is believed to be the final sector. This error does not occur when reading from the sdhc card.
 
 
