@@ -31,7 +31,7 @@ Thanks to the work of Tim Kirby, a frame work was provided for the operation of 
 
 \label{Ch6 Sec2}
 
-In order to test the functionality of compartmentalisation, we needed to load a dummy program that would call for a secure container from the SD card in the phone. This presented issues as the SD card would not read correctly. In addition there were timing issues and sections would not build correctly due to the lack of maintenance.
+As the secure compartments were entirely separate from the matrix mode corrections and during the timea major update for another section of the phone was finished, a new branch of the project was created. Switching to this new branch resulted in overhead issues that needed to be solved in order for the project to procceed further.
 
 %-----------------------------------
 %	SUBSECTION 1
@@ -40,9 +40,12 @@ In order to test the functionality of compartmentalisation, we needed to load a 
 
 \label{Ch6 Sec2 Sub1}
 
-As a new section of the project was being worked on the 
+As a new section of the project was being worked on the by other developers in isolation from the changes I had made, many of the fixes I had implemented had to be redone.\\
+The timing fixes done to possibly correct the matrix mode issue were all removed, including the generation of the timing reports, these were reimplemented. The implementation was identical to that described in section \ref{Ch5 Sec1 Sub2} of chapter \ref{Chapter 5}.\\
+All of the letterboxing changes were lost, so, as seen in section \ref{Ch5 Sec2} of chapter \ref{Chapter 5}, the erasing of the second character set was done one gains and the letterbox signal was one again used to limit the output of matrix mode.\\
+The revolving line issue due to discrepancies in line length returned as was fixed as described in section \ref{Ch5 Sec3 Sub1} of chapter \ref{Chapter 5}.\\
 
-Timing issues needed to be repaired again, these lead to more errors apparently being found in the CPU itself.
+In addition to the minor issues, matrix mode was not behaving as intended again. When attempting to enter or exit matrix mode with the tab + C= key combination, the key combination would be read and re-read rapidly and continuously. This made entering and exiting matrix mode unreliable as it was up to luck whether the key combination was scanned an odd or even amount of times to determine if the state was toggled.
 
 %-----------------------------------
 %	SUBSECTION 2
@@ -50,6 +53,8 @@ Timing issues needed to be repaired again, these lead to more errors apparently 
 \subsection{SD Card Restoration}
 
 \label{Ch6 Sec2 Sub2}
+
+
 
 Stuff about fixing the SD card
 
@@ -73,4 +78,11 @@ It is believed that the deselect state in the sdcard.vhdl was causing the read e
 
 When attempting to format the SDSC card and error occur ed after the read of sector 76000000. This is believed to be the final sector. This error does not occur when reading from the sdhc card.
 
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+\section{}
+
+\label{Ch6 Sec3}
 
