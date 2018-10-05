@@ -1,0 +1,64 @@
+% Chapter Template
+
+\chapter{Secure Compartmentilization} % Main chapter title
+
+\label{Chapter 6} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Initial Issues}
+
+\label{Ch6 Sec1}
+
+In order to test the functionality of compartmentilization, we needed to load a dummy program that would call for a secure container from the SD card in the phone. This presented issues as the SD card would not read corectly. In addition there were timing issues and sections would not build correctly due to the lack of maintainence.
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+\subsection{Repairing the Branch}
+
+\label{Ch6 Sec1 Sub1}
+
+Timing issues needed to be repaired again, these lead to more errors apparently being found in the cpu itself.
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+\subsection{SD Card Restoration}
+
+\label{Ch6 Sec1 Sub2}
+
+Stuff about fixing the SD card
+
+Debugging.
+
+In order to debug the SD controller monitor load was modified.
+
+To push things to a register S<Address> <Number>
+To read a register m<Address> 
+The SD control address = ffd3680
+t1 = pause the CPU
+t0 = Run CPU
+r = view CPU status
+
+For the ffd3680 register:
+0 = Reset
+1 = end reset
+2 = read
+
+It is believed that the deselect state in the sdcard.vhdl was casuing the read errors for the sdhc. Look into the SDSC card deselect protocols to determine the difference between the two.
+
+When attempting to format the SDSC card and error occured after the read of sector 76000000. This is believed to be the final sector. This error does not occur when readin from the sdhc card.
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Theorised Operation}
+
+\label{Ch6 Sec2}
+
+In order to implement the secure comparmentilisation, a finite state machine was made to represent the entire process. First the machine begines in insecure mode. Through a hypervisor trap, a secure service is then requested. This causes the ram and io registers to be saved to the SD card and then wiped, with the exception of the transfer ram. Once saved, the secure service is located on the SD card and loaded into the rom. Matrix mode is then entered, which restricts all of the external contact between the secure service and the interfacing hardware. The user is then prompted to view the transfer ram before the data is handed over to the secure service. If denied the saved data on the SD card is reloaded, and the CPU continues from the halted instruction, oblivious that any secure request occured. If accepted, the secure service runs and exits with a hypervisor trap. At this point the user is once again prompted to look at data in the transfer area. If rejected the data is wiped, everything is reloaded from the SD card and the CPU resumes. If accepted, the transfer area is kept and everything else is loaded from the SD card. The CPU then resumes and acknowledges that a secure service was successfuly run.

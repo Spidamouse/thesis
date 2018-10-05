@@ -1,0 +1,91 @@
+% Chapter Template
+
+\chapter{Introduction} % Main chapter title
+
+\label{Chapter 1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+
+In this introductory chapter the context of this honours thesis will be provided, in addition to this the aims of the thesis will be stated. In the following section, section \ref{Ch1 Sec1}, some examples of what lead to the need for this thesis will be given. Following that, in section \ref{Ch1 Sec2}, the issue will be outlined in the form of a problem statement. This will then be translated into objectives for this specific thesis and will then be followed by the research questions. After the research questions, section \ref{Ch1 Sec3} will further describe how the rest of this document will be laid out.   
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+
+\section{Motivation}
+
+\label{Ch1 Sec1}
+
+In the current digital age, many people are becoming increasingly anxious about the security of communication devices and rightfully so. In the name of greater public security, the privacy of the individual is slowly being eroded.\\
+In 2013, it was discovered that the Australian Security Intelligence Organisation (ASIO) had been monitoring civilian phones due to an "error" when taking down the phone number, causing the digits to be switched around and privacy to be breached. Due to "technical difficulties" the data that was harvested was retained for 10 months before finally being destroyed.\cite{Reference36} Stunts like these give clear cause to suspect that the government is in fact monitoring us at all times and that if serious concerns are not brought forward they will blatantly do so with no regard.\\
+But not only is private data already being collected by the ASIO, but the very definition of private data is also being attacked. Earlier this year the very definition of what is private information was reduced by the federal court. This results in less information, such as cell tower location, inbound call data and IP addresses, being covered by the privacy act, thus giving the government greater ability to monitor it's citizens without probably cause.\cite{Reference37}\\
+With both warranted and unwarranted data collection being done through mobile phones, it is becoming increasingly logical to think that soon, an Orwellian state may arise in which, political disobedience is no longer permitted.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Scope}
+
+\label{Ch1 Sec2}
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+
+\subsection{Problem Statement}
+
+\label{Ch1 Sec2 Sub1}
+
+Everyone has personal data that they wish to keep from prying eyes. Whether the secrecy of this information is important at a national or economic level, such as banking details, protecting ones location from abusive ex-partners, or simple secrets, such as planning a surprise party, it doesn't matter. This information should be able to be stored on a computer, or in a computer-containing mobile device, without fear of its disclosure. In the current world this is not the case; more and more exploits in security are being found every day and more and more patches are being released to counter them. The result is systems that are always vulnerable. Worse, the complexity of modern computer systems means that there is no way of verifying that data has not been compromised, or that data is truly safe from compromise. So instead of continuing to add more security features, that may bring with them undesirable side-effects, and are unlikely to be completely effective in any case, focus on the creation of simple systems, simple enough that a determined user can verify their own security. This would allow for greater security that is unable to be provided by any current device.
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+
+\subsection{Objectives}
+
+\label{Ch1 Sec2 Sub2}
+
+Within the overall objective of creating a simple, secure smart-phone like device, it is hope that the following will be accomplished in this project:
+
+\begin{itemize}
+\item Secure inter-process communication is established.
+\item The sub-systems of the phone are evaluated for their readiness.
+\item The unready sub-systems are completed.
+\item The architecture as a whole is evaluated at a high-level for completeness and security, ready for being handed over to the next phase of development.
+\end{itemize} 
+
+%-----------------------------------
+%	SUBSECTION 3
+%-----------------------------------
+
+\subsection{Research Questions}
+
+\label{Ch1 Sec2 Sub3}
+
+What are the missing or non-functional sub-systems that the MEGA65 requires to be implemented?\\*
+Which will be answered in the form of a survey of the current sub-systems of the MEGA65, and a survey of the sub-systems required to create a functional prototype.\\
+\\
+How can these sub-systems be implemented?\\
+Which will be answered by the creation of plans for the implementing of the missing or incomplete sub-systems.\\
+\\
+How can the simplicity, understandability and hence, the security of these sub-systems be maximised?\\
+Which will be answered by considering each sub-system, qualitatively appraising its simplicity, understandability and security, and where appropriate, making well researched recommendations for refining those components to improve one or more of these axes, and time permitting, acting on those recommendations.\\
+\\
+How can the complete MEGA65 architecture be physically prototyped on the bench?\\
+Which will be answered by examination of the current partial bench prototype and comparing it with the sub-systems identified through the other research questions, and designing and realising a complete bench prototype. This will occur through coordination with Mr. Lachlan McDonald, who is undertaking the designing of the PCB for the MEGA65 smart-phone device.\\
+\\
+How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?\\
+Which will be answered by considering this architecture and the current state of the MEGA65 system to derive and execute a method for implementing a secure compartmentalisation architecture.\\
+\\
+Overall the success of the project will be measured against the creation of a functioning bench prototype device that, through the architecture, implements the secure and understandable compartmentalisation of hardware to the point of demonstrability.
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
+
+\section{Thesis Layout}
+
+\label{Ch1 Sec3}
+
+Following this chapter, "Chapter \ref{Chapter 1} : Introduction", is the chapter, "Chapter \ref{Chapter 2} : Literature Review". In which relevant background information regarding complexity and cyber security, mobile devices, isolative security and the MEGA65 project will be given. After this, "Chapter \ref{Chapter 3} : Methods and Materials" will go on to describe how this project was undertaken and what tools were used. This will be immediately followed by "Chapter \ref{Chapter 4} : Project Set-up". In this chapter, details about the issues faced immediately after joining the project will be made clear. Following this is "Chapter \ref{Chapter 5} : Matrix Mode Corrections", in this chapter the issues encountered with the matrix mode and their fixes will be made clear. "Chapter \ref{Chapter 6} : Secure Compartmentalisation" will follow, in which an overview of how the secure containers in the phone were implemented will be given. Finally, "Chapter \ref{Chapter 7} : Bug Fixing" will outline issues with and describe the corrections made to the various subsystems of the phone.
+
