@@ -326,4 +326,11 @@ When examining the characters displayed to the screen, as noted in figure \ref{f
 
 \label{Ch5 Sec3 Sub4}
 
-During work on the other bugs in matrix mode, Dr. Gardner-Stephen did some work on removing the junk characters seen at the bottom section of matrix mode, as seen if figure \ref{fig:letterbox}. This was done by taking the signals from the frame generator and use them to determine
+During work on the other bugs in matrix mode, Dr. Gardner-Stephen did some work on removing the junk characters seen at the bottom section of matrix mode, as seen if figure \ref{fig:letterbox}. To restrict the output to the visible section of the screen the row counter variable was used to determine if the current row was beyond the end of the matrix mode display. As seen in figure \ref{fig:letterboxfixtwo}, if the current row was beyond the display the vga input was instead darkened.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{letterboxfixtwo}
+  \caption{Correction to the rain compositor to stop the junk characters appearing in the lower section of the screen.}
+  \label{fig:letterboxfixtwo}
+\end{figure}
