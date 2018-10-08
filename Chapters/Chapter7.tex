@@ -33,3 +33,12 @@ After letterbox implementation, a strange phenomenon occurred on the left side o
   \label{fig:matrixmodecharacterinputerror}
 \end{figure}
 
+%----------------------------------------------------------------------------------------
+%	SECTION 2
+%----------------------------------------------------------------------------------------
+
+\section{Secure Compartmentalisation Bugs}
+
+\label{Ch7 Sec2}
+
+When implementing the secure compartmentalisation, it was noted that there was an anomoly when attemping to write to the SD card. When attempting to write to the SD card, the write actions would perform as expected, but no data would be written; instead the sector that was to be written to was erased. As no dedicated erase function had be developed, this was expected to be the FPGA attempting to write to the SD card, not meeting the power requirements to successfuly write. This would cause the data seen from the SD card to be all logic low and the write proccess to complete successfuly, thus throwing no errors. Changing the FPGA power supply from USB to the mains outlet fixed these issues.
