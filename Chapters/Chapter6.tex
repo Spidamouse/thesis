@@ -68,29 +68,42 @@ In addition to the minor issues, matrix mode was not behaving as intended again.
 
 \label{Ch6 Sec2 Sub2}
 
+One of the already implemented functions on the phone was the freeze function, this allowed the user to save state to a "Slot" located on the SD card. This freeze function would be the basis for the saving to and loading from the SD card when entering and exiting secure mode. The functionality for the standard capacity SD cards (SDSC) was entirely as expected, it was only the high capacity SD cards (SDHC) that were causing issues. When attemping to write to an SDHC card with the existing code, no visible errors occured. It was only when attemping to read from this card that an issue occured. When attemping to read after the first time the SD card would read no data, each read required a reset of the SD card between them in order for correct functionality. The extreme capacity SD card (SDXC) was not supported by the current hardware and indeed, was not recognised as an SD card at all when reading and writing was attempted. At the suggestion of Dr. Garner-Stephen, the issue with the SDHC cards was examined from the finite state machine located in the sdcard.vhdl file. As seen in figure \ref{fig:sdcardread} when reading or writing, the SD card is selected by making the cs\_bo bit low, and when it is not doing either of them, it is deselected by making cs\_bo high. Comparing this to the reset proccess seen in figures \ref{fig:resetsdcard}, \ref{fig:startsdcard} and \ref{fig:deselectsdcard}, it can be seen that there are several signals that are not being propogated when deselecting the SD card. At the suggestion of Dr. Gardner-Stephen, the simple solution of not deselecting the SD card was used. This solution, as seen in figure \ref{fig:sdcardfix}, does not provide hot swapping of the SD card, but has the functionality required for the secure mode implementation.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{sdcardread}
+  \caption{The SD card idle state code.}
+  \label{fig:sdcardread}
+\end{figure}
 
-Stuff about fixing the SD card
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{resetsdcard}
+  \caption{The reset SD card code.}
+  \label{fig:resetsdcard}
+\end{figure}
 
-Debugging.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{startsdcard}
+  \caption{The SD card initial start up code.}
+  \label{fig:startsdcard}
+\end{figure}
 
-In order to debug the SD controller monitor load was modified.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{deselectsdcard}
+  \caption{The deselect SD card code.}
+  \label{fig:deselectsdcard}
+\end{figure}
 
-To push things to a register S<Address> <Number>
-To read a register m<Address> 
-The SD control address = ffd3680
-t1 = pause the CPU
-t0 = Run CPU
-r = view CPU status
-
-For the ffd3680 register:
-0 = Reset
-1 = end reset
-2 = read
-
-It is believed that the deselect state in the sdcard.vhdl was causing the read errors for the sdhc. Look into the SDSC card deselect protocols to determine the difference between the two.
-
-When attempting to format the SDSC card and error occur ed after the read of sector 76000000. This is believed to be the final sector. This error does not occur when reading from the sdhc card.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{sdcardfix}
+  \caption{The fixed read, write and idle code for the SD card controller..}
+  \label{fig:sdcardfix}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
