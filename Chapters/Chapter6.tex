@@ -128,7 +128,7 @@ One of the already implemented functions on the phone was the freeze function, t
 
 \label{Ch6 Sec3 Sub1}
 
-As discussed in section \ref{Cg6 Sec1}, in order for the user to enter secure mode a hypervisor trap needs to be sent to the CPU. All hypervisor traps work in a single stardard way, a set of conditions, ususally a key combination, pulls the hypervisor trap signal low. This signal is then fed out of the triggering hardware where it is combined with the the other hypervisor traps to form a singular, active low, hypervisor trap. This hypervisor trap signal, seen in figure \ref{fig:hypervisortrap}, is then sent to the CPU, where it is used to determine the type of hypervisor trap occuring. As seen in figure \ref{fig:hypertrappending}, this trap input is then used to generate an edge signal which is further used to latch the hypervisor trap pending signal. This prevents the hypervisor trap from being lost if not active for long enough. This is then used in figure \ref{fig:enterhypervisor} to cause the next instruction of the CPU to enter the hypervisor mode. When entering the hypervisor the secure mode bit is checked to see if secure mode is already active, this is used for exiting secure mode and further discussed in section \ref{Ch6 Sec3 Sub4}. As seen in figure \ref{fig:hypertraptype}, when not in secure mode, the hypervisor\_trap\_port signal is used as a pointer to set the program counter to the desired hypervisor trap location in memory. These memory locations start at \$8000 and the secure mode trap is trap 11, which starts at memory location \$8044 and can be seen in figure \ref{fig:hypertrapsoftware}. This location in memory is where the next stage of the secure mode proccess, as described in section \ref{Ch6 Sec3 Sub2}, will take place.
+As discussed in section \ref{Ch6 Sec1}, in order for the user to enter secure mode a hypervisor trap needs to be sent to the CPU. All hypervisor traps work in a single stardard way, a set of conditions, ususally a key combination, pulls the hypervisor trap signal low. This signal is then fed out of the triggering hardware where it is combined with the the other hypervisor traps to form a singular, active low, hypervisor trap. This hypervisor trap signal, seen in figure \ref{fig:hypervisortrap}, is then sent to the CPU, where it is used to determine the type of hypervisor trap occuring. As seen in figure \ref{fig:hypertrappending}, this trap input is then used to generate an edge signal which is further used to latch the hypervisor trap pending signal. This prevents the hypervisor trap from being lost if not active for long enough. This is then used in figure \ref{fig:enterhypervisor} to cause the next instruction of the CPU to enter the hypervisor mode. When entering the hypervisor the secure mode bit is checked to see if secure mode is already active, this is used for exiting secure mode and further discussed in section \ref{Ch6 Sec3 Sub4}. As seen in figure \ref{fig:hypertraptype}, when not in secure mode, the hypervisor\_trap\_port signal is used as a pointer to set the program counter to the desired hypervisor trap location in memory. These memory locations start at \$8000 and the secure mode trap is trap 11, which starts at memory location \$8044 and can be seen in figure \ref{fig:hypertrapsoftware}. This location in memory is where the next stage of the secure mode proccess, as described in section \ref{Ch6 Sec3 Sub2}, will take place.
 
 \begin{figure}
   \centering
@@ -165,6 +165,16 @@ As discussed in section \ref{Cg6 Sec1}, in order for the user to enter secure mo
   \label{fig:hypertrapsoftware}
 \end{figure}
 
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+
+\subsection{Save and Load State}
+
+\label{Ch6 Sec3 Sub2}
+
+Once trapped to the hypervisor, as described in section \ref{Ch6 Sec1} and seen in figure \ref{timkirby}, the io registers, RAM and ROM all need to be saved to a save state slot. Upon entering the hypervisor, as seen in figure
+
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{hypertrapsoftwareone}
@@ -180,15 +190,6 @@ As discussed in section \ref{Cg6 Sec1}, in order for the user to enter secure mo
 \end{figure}
 
 %-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Save and Load State}
-
-\label{Ch6 Sec3 Sub2}
-
-
-%-----------------------------------
 %	SUBSECTION 3
 %-----------------------------------
 
@@ -196,7 +197,28 @@ As discussed in section \ref{Cg6 Sec1}, in order for the user to enter secure mo
 
 \label{Ch6 Sec3 Sub3}
 
+With the io registers, RAM and ROM all saved and the secure service loaded into RAM and ROM while preserving the transfer area, entry into secure mode can begin. This starts with the hypervisor toggling the secure mode bit of the protected hardware flags. This signal propagates out of the CPU to the monitor where, as seen in figure \ref{fig:monitorprotectedhardware}, it is eventually scanned and used to branch and enter the secure mode routine. In this routine, as seen in figure \ref{fig:maybeentersecuremode}, currently only the secure mode and matrix mode flags are set high and the routine returns to figure \ref{fig:monitorprotectedhardware}. In the future iterations, an indicator as to how much memory the transfer area occupies will need to be implemented. This causes the CPU to halt through the logic seen in figure \ref{fig:cpuhalt}. In parallel to the CPU being halted, the protected hardware signal is fed into the matrix mode compositor. In the compositor,  While the CPU is halted, the monitor continues to function and accept input from the keyboard.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{monitorprotectedhardware}
+  \caption{The routine that checks the protected hardware to determine if the phone should be in secure mode}
+  \label{fig:monitorprotectedhardware}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{maybeentersecuremode}
+  \caption{The routine that sets the secure mode flag to non-zero value.}
+  \label{fig:maybeentersecuremode}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{cpuhalt}
+  \caption{The CPU halting code that halts when the CPU and monitor disagree on if the phone is in secure mode.}
+  \label{fig:cpuhalt}
+\end{figure}
 
 %-----------------------------------
 %	SUBSECTION 4
