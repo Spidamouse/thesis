@@ -185,7 +185,7 @@ When looking at the error it was believed the the junk data was caused by rouge 
 
 \label{Ch5 Sec2 Sub2}
 
-As the matrix mode display was still exceeding the desired bounds, a limiting signal was used to keep the visible output within a letterbox. One such signal already existed in the viciv and was being used for a similar purpose with the vga output. This signal was taken from the viciv and sent to the matrix mode compositor, where it was used in place of vsync. As seen in figure \ref{fig:letterboxcode}, in addition to the replacement of vsync, the letterbox signal was used to blank the region outside of the letterbox, this can be seen in figure \ref{fig:letterbox}. While the letterbox fixed the issues, it introduced some more minor issues into matrix mode. These issues are discussed in chapter \ref{Chapter 7}.
+As the matrix mode display was still exceeding the desired bounds, a limiting signal was used to keep the visible output within a letterbox. One such signal already existed in the viciv and was being used for a similar purpose with the vga output. This signal was taken from the viciv and sent to the matrix mode compositor, where it was used in place of vsync. As seen in figure \ref{fig:letterboxcode}, in addition to the replacement of vsync, the letterbox signal was used to blank the region outside of the letterbox, this can be seen in figure \ref{fig:letterbox}. While the letterbox fixed the issues, it introduced some more minor issues into matrix mode. These issues are further discussed in the following sections.
 
 \begin{figure}
   \centering
@@ -326,7 +326,7 @@ When examining the characters displayed to the screen, as noted in figure \ref{f
 
 \label{Ch5 Sec3 Sub4}
 
-During work on the other bugs in matrix mode, Dr. Gardner-Stephen did some work on removing the junk characters seen at the bottom section of matrix mode, as seen if figure \ref{fig:letterbox}. To restrict the output to the visible section of the screen the row counter variable was used to determine if the current row was beyond the end of the matrix mode display. As seen in figure \ref{fig:letterboxfixtwo}, if the current row was beyond the end of the writeable matrix mode display, the vga input was darkened and passed out.
+While working collaboratively with Dr. Gardner-Stephen, we did some work on removing the junk characters seen at the bottom section of matrix mode, as seen if figure \ref{fig:letterbox}. To restrict the output to the visible section of the screen the row counter variable was used to determine if the current row was beyond the end of the matrix mode display. As seen in figure \ref{fig:letterboxfixtwo}, if the current row was beyond the end of the writeable matrix mode display, the vga input was darkened and passed out. This would hard code out any possibility of the matrix mode display being corrupted by junk characters being present in the terminal memory due to other faults.
 
 \begin{figure}
   \centering
@@ -339,6 +339,15 @@ During work on the other bugs in matrix mode, Dr. Gardner-Stephen did some work 
 %	SUBSECTION 5
 %-----------------------------------
 
-\subsection{}
+\subsection{Character Duplication}
 
 \label{Ch5 Sec3 Sub5}
+
+After letterbox implementation as described in section \ref{Ch5 Sec2}, a strange phenomenon occurred on the left side of the screen when in matrix mode. It appears that there is a region, about four character wide, that contains duplicates of characters from the next line. In addition to this duplicate, there appears to be smearing of the first two characters in this duplicate region. These observations can be seen in figure \ref{fig:matrixmodecharacterinputerror}. In addition to the issues with the left region, it is believed that these issues are causing the screen to become shifted to the right. As seen in figure \ref{fig:matrixmodecharacterinputerror}, the last four characters of the line are continuing past the right most visible point of the screen. 
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{matrixmodecharacterinputerror}
+  \caption{The matrix rain compositor smearing / duplication.}
+  \label{fig:matrixmodecharacterinputerror}
+\end{figure}
