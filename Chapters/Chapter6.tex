@@ -296,13 +296,37 @@ Like the "REJECT" case, the "ACCEPT" case needs to be fully implemented. Current
 
 \label{Ch6 Sec3 Sub5}
 
-Once either "ACCEPT" or "REJECT" has occured and the CPU is running again, the hypervisor will then 
+Once either the "ACCEPT" or the "REJECT" actions have occured and the CPU is running again, the hypervisor then is able to restore to the user program. As seen in figure \ref{fig:hyperrestore}, restoring to the user session has not yet been implemented. In the future, what should occur in this trap is the io registers, non-transfer area RAM and all of ROM should be loaded from the save state.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{hyperrestore}
+  \caption{The hypervisor leave secure mode trap.}
+  \label{fig:hyperrestore}
+\end{figure}
 
-%% Put this in section 2
+%----------------------------------------------------------------------------------------
+%	SECTION 3
+%----------------------------------------------------------------------------------------
 
-%\subsection{Secure Compartment Issue}
+\section{Secure Compartment Considerations}
 
-%\label{Ch6 Sec1 Sub1}
+\label{Ch6 Sec3}
 
-%During the development of the secure compartments, an issue with the design was made apparent. As explained in the previous section, when entering or exiting secure mode the hypervisor is in complete control of the phone's operation. This poses a problem if it were to experiance any subversion. Between the loading of the secure service and the entering of secure mode and halting of the CPU, there is opportunity for the 
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+
+\subsection{Hypervisor}
+
+\label{Ch6 Sec3 Sub1}
+
+During the development of the secure compartments, a possible issue with the design was made apparent. Originally, when entering or exiting secure mode, the hypervisor was in complete control of the phone's operation. This posed a problem if it were to experiance any subversion. Between the loading of the secure service and the entering of secure mode, in which the CPU is halted, there was a small window where the hypervisor was able to perform any actions it desired. To correct this issue, control over the halting of the CPU was given to the monitor and was performed while in the hypervisor trap. This caused the   
+
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
+
+\subsection{Monitor CPU}
+
+\label{Ch6 Sec3 Sub2}
