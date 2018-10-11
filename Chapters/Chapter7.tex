@@ -1,49 +1,35 @@
 % Chapter Template
 
-\chapter{Bug Fixing} % Main chapter title
+\chapter{Results and Discussion} % Main chapter title
 
 \label{Chapter 7} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-
-This chapter will describe issues found during the project, but were not covered in the previous chapters. In addition to describing the issues, if applicable, the corrections to resolve these issues will be given. If the issues were unresolved, a suggestion at the possible causes for the issue will be given. Section \ref{Ch7 Sec1} details the issues discovered during matrix mode.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
 
-\section{Matrix Mode Bugs}
+\section{Main Section 1}
 
-\label{Ch7 Sec1}
-
-As discussed in chapter \ref{Chapter 5}, by implementing letterboxing into matrix mode several minor bugs were also introduced.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies lacinia euismod. Nam tempus risus in dolor rhoncus in interdum enim tincidunt. Donec vel nunc neque. In condimentum ullamcorper quam non consequat. Fusce sagittis tempor feugiat. Fusce magna erat, molestie eu convallis ut, tempus sed arcu. Quisque molestie, ante a tincidunt ullamcorper, sapien enim dignissim lacus, in semper nibh erat lobortis purus. Integer dapibus ligula ac risus convallis pellentesque.
 
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
+\subsection{Subsection 1}
 
-\subsection{Character Duplication}
+Nunc posuere quam at lectus tristique eu ultrices augue venenatis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam erat volutpat. Vivamus sodales tortor eget quam adipiscing in vulputate ante ullamcorper. Sed eros ante, lacinia et sollicitudin et, aliquam sit amet augue. In hac habitasse platea dictumst.
 
-\label{Ch7 Sec1 Sub1}
+%-----------------------------------
+%	SUBSECTION 2
+%-----------------------------------
 
-After letterbox implementation, a strange phenomenon occurred on the left side of the screen when in matrix mode. It appears that there is a region, about four character wide, that contains duplicates of characters from the next line. In addition to this duplicate, there appears to be smearing of the first two characters in this duplicate region. These observations can be seen in figure \ref{fig:matrixmodecharacterinputerror}. In addition to the issues with the left region, it is believed that these issues are causing the screen to become shifted to the right. As seen in figure \ref{fig:matrixmodecharacterinputerror}, the characters are continuing past the right most visible point of the screen. 
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\linewidth]{matrixmodecharacterinputerror}
-  \caption{The matrix rain compositor smearing / duplication.}
-  \label{fig:matrixmodecharacterinputerror}
-\end{figure}
+\subsection{Subsection 2}
+Morbi rutrum odio eget arcu adipiscing sodales. Aenean et purus a est pulvinar pellentesque. Cras in elit neque, quis varius elit. Phasellus fringilla, nibh eu tempus venenatis, dolor elit posuere quam, quis adipiscing urna leo nec orci. Sed nec nulla auctor odio aliquet consequat. Ut nec nulla in ante ullamcorper aliquam at sed dolor. Phasellus fermentum magna in augue gravida cursus. Cras sed pretium lorem. Pellentesque eget ornare odio. Proin accumsan, massa viverra cursus pharetra, ipsum nisi lobortis velit, a malesuada dolor lorem eu neque.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 
-\section{Secure Compartmentalisation Bugs}
+\section{Main Section 2}
 
-\label{Ch7 Sec2}
-
-\subsection{SD Card Issue}
-
-\label{Ch7 Sec2 Sub1}
-
-When implementing the secure compartmentalisation, it was noted that there was an anomoly when attemping to write to the SD card. When attempting to write to the SD card, the write actions would perform as expected, but no data would be written; instead the sector that was to be written to was erased. As no dedicated erase function had be developed, this was expected to be the FPGA attempting to write to the SD card, not meeting the power requirements to successfuly write. This would cause the data seen from the SD card to be all logic low and the write proccess to complete successfuly, thus throwing no errors. Changing the FPGA power supply from USB to the mains outlet fixed these issues.
-
+Sed ullamcorper quam eu nisl interdum at interdum enim egestas. Aliquam placerat justo sed lectus lobortis ut porta nisl porttitor. Vestibulum mi dolor, lacinia molestie gravida at, tempus vitae ligula. Donec eget quam sapien, in viverra eros. Donec pellentesque justo a massa fringilla non vestibulum metus vestibulum. Vestibulum in orci quis felis tempor lacinia. Vivamus ornare ultrices facilisis. Ut hendrerit volutpat vulputate. Morbi condimentum venenatis augue, id porta ipsum vulputate in. Curabitur luctus tempus justo. Vestibulum risus lectus, adipiscing nec condimentum quis, condimentum nec nisl. Aliquam dictum sagittis velit sed iaculis. Morbi tristique augue sit amet nulla pulvinar id facilisis ligula mollis. Nam elit libero, tincidunt ut aliquam at, molestie in quam. Aenean rhoncus vehicula hendrerit.
