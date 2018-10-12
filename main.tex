@@ -177,7 +177,32 @@ headsepline, % Uncomment to get a line under the header
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
-\addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+  \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
+
+  Modern computers have become too complex to fully understand, let alone to fully verify.
+  Therefore it has ceased to be rational to trust their security and integrity.  
+  With billions of transistors and billions of lines of code, even the large corporations
+  who design and manufacture computer processors and write operating systems and
+  applications are unable to verify their security, as evidenced by hardware vulnerabilities
+  in processors such as Spectre and MELTDOWN, and the endless stream of software security
+  updates.
+  In short, computers are vulnerable to attacks from the surrounding environment, and
+  defence strategies are heuristic and reactionary, placing the integrity of communications
+  and commerce at risk.  However this has not always been the case: The computers of the 1980s
+  and early 1990s were much simpler, with software measured in kilobytes, not giga-bytes,
+  and with processors with thousands, not billions of transistors.
+  This thesis asks the question as to whether it is possible to create modern usable
+  computing devices based on architectures so simple that they can be adequately verified
+  by a determined user, and in that context, what architectural extensions might be used
+  to strengthen the security of simple architectures, without making the resulting systems
+  unnecessarily complex.
+  A proof-of-concept system is presented based on the MEGA65 retro-computer, to which a
+  robust secure compartmentalisation facility is added, together with a use-controlled
+  out-of-band memory inspector, that ensures the user has complete sovereignty over the
+  system, so that even were it compromised, that the compromise can be discovered and
+  dealt with.
+
+  
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
