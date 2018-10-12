@@ -4,6 +4,8 @@
 
 \label{Chapter 1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+\includegraphics[width=\linewidth,trim={0 9cm 0 10cm},clip]{Paradise_Lost_24}
+
 \section{Paradise Lost}
 
 The earliest epochs of the digital era were based on a sense of control and security:  A computational device could be
@@ -65,7 +67,9 @@ is free of all digital pathogens.
     
 \end{figure}
 
-As though this were not depressing enough, the problem is complicated by the fact that computers have, like biological organisms,
+\todo{Add HIV/BADBIOS and IME/auto-immune analogies here if you wish}
+
+Were this not depressing enough, the problem is complicated by the fact that computers have, like biological organisms,
 become so complex, that it is impossible to construct them in such a way that they can effectively resist being subverted.
 The interactions in modern software are now so rich -- like the interactions of proteins, genes and other elements that make up
 the control machinery of living cells -- that it is impossible to fully understand them in all but the most trivial of circumstances.
@@ -81,9 +85,26 @@ As bad as this situation is for software, it is even worse when hardware systems
 over the same time period.  However, unlike a defect in software, a defect in a CPU cannot necessarily be corrected without physical
 replacement.
 
-The 
+The fact that the Spectre and MELTDOWN vulnerabilities existed in CPUs for almost 20 years before being discovered \todo{cite}
+is strong evidence that we have long since passed the point where even a well-resourced company like Intel or AMD can ensure
+the correct operation of a CPU.  If these companies with many thousands of verification engineers cannot achieve it,
+what hope do individuals and small organisations have for verifying the correct operation of their computing devices?
 
-\subsection{Research Questions}
+What is clear is that the problem is one of complexity: A single transistor can be easily verified. The simple early CPU designs
+like the 6502, that consisted of only a few thousand transistors can also be easily verified.  But modern complex CPU designs cannot.
+There must exist somewhere a tipping point where verification ceases to be realistic for a determined user.
+Beyond that point security is merely a hopeful dream, because we can no longer prove correctness and immunity to the challenges
+that it might face, just as avoiding the common cold is also no more than a hopeful dream, and certainly nothing that can
+be guaranteed if we are to remain in communications with the outside world.
+
+We are therefore forced to accept the unpalatable truth that we are no more sovereign over our computing devices than our bodies
+are over the biological world that surrounds us: We have been cast from the Eden of security for eating the forbidden fruit of
+ever increasing complexity and functionality.
+
+The question is whether we can go back, to create computing devices that are sufficiently simple as to be securable, and yet
+remain sufficiently useful in practice.  This is the motivating question for this thesis.
+
+\section{Research Questions}
 
 \label{Ch1 Sec2 Sub3}
 
