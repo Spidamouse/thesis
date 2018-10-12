@@ -180,13 +180,37 @@ As discussed in section \ref{Ch6 Sec1}, in order for the user to enter secure mo
 
 \label{Ch6 Sec3 Sub2}
 
-Once trapped to the hypervisor, as described in section \ref{Ch6 Sec1} and seen in figure \ref{fig:timkirby}, the io registers, RAM and ROM all need to be saved to a save state slot. Upon entering the hypervisor, as seen in figure
+Once trapped to the hypervisor, as described in section \ref{Ch6 Sec1} and seen in figure \ref{fig:timkirby}, the io registers, RAM and ROM all need to be saved to a save state slot.
+Upon entering the hypervisor and attempting to create a save state, as seen in figure \ref{fig:hypertrapsoftwareone}, nothing occurs at all. All that happens is that access to the cartridge is disabled, the CPU is forced into 50MHz mode and the CPU mode is forced into C65 mode. Then the secure mode and matrix mode flags are set high. This is not how the saving should occur in the final design. In the final design saving should occur similar to the saving done in the freeze routine shown in figures \ref{fig:freezeone}, \ref{fig:freezetwo} and \ref{fig:freezethree}. In this proccess the a freeze slot is specified, this would be how the user selects the secure service they wish to load. From this point the slot is checked to see if it is valid. Then the SD card is prepared for writing and finally the slot in the SD card is written to.\\
+
+When loading a state, figure 
 
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{hypertrapsoftwareone}
   \caption{}
   \label{fig:hypertrapsoftwareone}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{freezeone}
+  \caption{}
+  \label{fig:freezeone}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{freezetwo}
+  \caption{}
+  \label{fig:freezetwo}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{freezethree}
+  \caption{}
+  \label{fig:freezethree}
 \end{figure}
 
 \begin{figure}
