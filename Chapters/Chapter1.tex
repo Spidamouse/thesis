@@ -4,85 +4,53 @@
 
 \label{Chapter 1} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
-In this introductory chapter the context of this honours thesis will be provided, and the aims of the thesis will be stated.
-In the following section, section \ref{Ch1 Sec1}, the need for this thesis is justified.
-Following that, in section \ref{Ch1 Sec2}, the issue will be outlined in the form of a problem statement.
-This will then be translated into objectives for this specific thesis and will then be followed by the research questions.
-After the research questions, section \ref{Ch1 Sec3} will further describe how the rest of this document will be laid out.   
+\section{Paradise Lost}
 
-%----------------------------------------------------------------------------------------
-%	SECTION 1
-%----------------------------------------------------------------------------------------
+The earliest epochs of the digital era were based on a sense of control and security:  A computational device could be
+created, and could be expected to behave as expected, and not to be subverted at a distance by invisible hands.
+This began with the first computers that were the size of a small building, and continued until the advent of personal
+computers that were capable of easy exchange of data between them, initially by floppy disk, by modem or
+other forms of networking \cite{chen2004evolution}. 
+Essentially, whenever a means of communications was established between computers, worms, virii and other
+pathological software soon followed.   The pathological software was initially simple in nature, and
+could be easily detected and removed, and into the 1990s it was not uncommon to be able to obtain anti-virus
+software that could detect and remove all extant pathological software from a system.
+Figure \ref{fig:nortonad} shows an example advertisement from 1991, which explains that if users suspect
+the existence of a new virus, they can call a ``24-hour virus newsline'', betraying how relatively
+sedate the development and spread of computer virii was at that time.
 
-\section{Motivation}
+\begin{figure}
+  \label{fig:nortonad}
+  \centering
+  \includegraphics[width=\linewidth]{NortonAntiVirus-Advertisement}
+  \caption{Early advertisement for Norton Anti-Virus for DOS. New viruses spread slowly at the time, as they could
+    only be spread by floppy disk. As a result, users could be reasonably directed to call a telephone number if they
+    suspected that they had a new virus on their computer. Source: \url{http://www.ipernity.com/doc/78280/6670939}.
+    }
+\end{figure}
 
-\label{Ch1 Sec1}
+The advent of ubuiquitous internet access marked a dramatic shift:  Where as previously viruses were mostly reliant on the
+movement of physical artefacts, such as floppy disks, the internet allowed for the infection of systems anywhere in the
+world, without coming into physical contact.
+That is, it introduced a new and highly effective transmission mode, that was all the more insidious in that in the floppy-era
+you could determine whether your computer might be at risk, based on whether it had been in contact through the insertion of
+a floppy disk.
+This allowed for individuals to effectively manage the sanitation of their computers in a rational and understandable manner.
+The Internet allowed for invisible infection at a distance, a problem which persists to the present day, and which has created
+the conditions for the wide range of malware, viruses, trojan software, ransomware, rootkits, backdoors and other pathological
+software to develop and spread.
 
-In the current digital age, many people are becoming increasingly anxious about the security of communication devices.
-This concern is not without reason. One the one hand, there is a seemingly unending stream of hardware and software vulnerabilities \cite{WannaCry}\cite{SpecMel}.
-Then on the other hand, the concept of privacy in the digital world is continually being erroded, including by governments seeking to increase their surveillance and related powers in the name of national security \cite{Reference37}.
-
-However, even lawfully legislated powers are not with out risk.  For example, in 2013, it was discovered that the Australian Security Intelligence Organisation (ASIO) had been monitoring civilian phones due to an error when taking down the phone number, causing the digits to be misordered, compromising the privacy of the owners of the incorrectly entered phone numbers.
-On top of the breach of privacy, due to technical difficulties the data that was harvested was retained for 10 months before finally being able to be destroyed \cite{Reference36}.
-Events like these remind us that even well-intentioned government agencies are not infallible, and that it is not unjustified to seek to improve the intrinsic privacy of mobile telephones.
-
-Additionally, the concept of what is private data is also under attack.
-Earlier this year the very definition of what is private information was reduced by the federal court.
-This results in information, such as cell tower location, inbound call data and IP addresses, no longer being covered by the privacy act, thus giving the government greater ability to monitor it's citizens without probable cause \cite{Reference37}.\\
-With both warranted and unwarranted data collection being done through mobile phones, there is a clear and present danger of a slippery slope towards an Orwellian state, as governments accrete power little-by-little, until the necessary checks and balances on the power of political parties and governments are eroded, and the temptation to retain power at all costs leads to the breakdown of freedom and democracy.  The increasing monitoring and control of the population of China through digital gives a proof-by-example of how this can eventuate.
-
-Therefore, seeing the combination of current events and recalling the history of countries like East Germany who have lived under a pervasive police state, there is a clear need to ensure that the law abiding populace of liberal democracies are able to communicate freely with one another in the digital age, precisely so that democracies and the freedoms that liberal democracies exist to provide can be protected.
-This thesis explores this issue by considering how a computer based communications device can be made secure in the 21st century.
-
-%----------------------------------------------------------------------------------------
-%	SECTION 2
-%----------------------------------------------------------------------------------------
-
-\section{Scope}
-
-\label{Ch1 Sec2}
-
-%-----------------------------------
-%	SUBSECTION 1
-%-----------------------------------
-
-\subsection{Problem Statement}
-
-\label{Ch1 Sec2 Sub1}
-
-Everyone has personal data that they wish to keep from prying eyes.
-Whether the secrecy of this information is important at a national or economic level, such as banking details, protecting ones location from abusive ex-partners, or simple secrets, such as planning a surprise party, it doesn't matter.
-The importance of the integrity of private correspondence is perhaps best expressed in Article 10 of the German Basic Law \cite{Germany}, the German equivalent of a constitution, that states simply that "the privacy of correspondence, posts and telecommunications shall be inviolable".
-That is, information should be able to be communicated electronically, without fear of disclosure, manipulation or other misadventure. By extension, it must be possible to store such correspondence electronically.
-However, in the 21st century the inviolability of telecommunications has become increasingly impossible: The hardware and software vulnerabilities of software mean that systems are almost always vulnerable to lawful and unlawful interception, because of lack of fundamental security.
-
-Worse, the complexity of modern computer systems means that there is no way of verifying that data has not been compromised, or that data is truly safe from compromise, because it is impossible to verify the correct operation of such systems.
-The recent practice of adding security features is not a solution to this problem, because each new feature increases the complexity, and thus makes verification all the more impossible. The vulnerabilities identified in the Intel Management Engine is a good example of the inherent irony of the current situation:
-Measures intended to keep computers safe have the opposite effect in practice, precisely because the increase the attack surface, rather than decrease it \cite{IME}.
-
-The problem is therefore that modern computing and communications devices have become too complex to be verified, and therefore too complex to trust.  Therefore this thesis examines how much simpler systems can be designed, simple enough for a single determined user to verify them, so that we can reach the point where the inviolability of telecommunications becomes a reality.
-
-
-%-----------------------------------
-%	SUBSECTION 2
-%-----------------------------------
-
-\subsection{Objectives}
-
-\label{Ch1 Sec2 Sub2}
-
-Within the overall objective of creating a simple, secure smart-phone like device, it is hope that the following will be accomplished in this project:
-
-\begin{itemize}
-\item Secure inter-process communication is established.
-\item The sub-systems of the phone are evaluated for their readiness.
-\item The unready sub-systems are completed.
-\item The architecture as a whole is evaluated at a high-level for completeness and security, ready for being handed over to the next phase of development.
-\end{itemize} 
-
-%-----------------------------------
-%	SUBSECTION 3
-%-----------------------------------
+This evolution of the pathogenic material to take advantage of the available modes of delivery is directly mirrored in the
+world of biology \cite{antonovics2017evolution}.
+Indeed, what we see with computers now, is that the defences against these infectious threats have come to resemble the
+immune system of complex animals: A variety of intrinsic protections, heuristic measures and the development of immunity only
+after infection have become accepted norms for computer security.
+However, this is a dangerous situation, just as animals are made sick or die or are subverted by biological pathogens, e.g., Figure \ref{fig:antzombies}), the
+compromise of our digital systems has significant effects for individuals and society.  And just as it is impossible to quickly
+appraise whether an animal is free of all disease, it has become impossible to determine authoritatively whether a computer
+is free of all digital pathogens.  Worse, biology shows us that the DNA of an organism that gives it protection from
+certain pathogens often makes it vulernable to others, because increased complexity creates increased opportunities for subversion
+of host resources by a pathogen. 
 
 \subsection{Research Questions}
 
