@@ -6,6 +6,8 @@
 
 \label{Chapter 7} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+In the following chapter what was achieved over the project will be discussed. This will begin with the challenges encountered during and final state of the matrix mode and secure compartment sections. This will then continue on to discussing the research questions and will end with a discussion about the future works of the project reguarding matrix mode and the secure compartments.
+
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -63,6 +65,24 @@ During corrections to the visual bugs, the biggest challenges faced were the exp
 
 \label{Ch7 Sec2}
 
+\subsection{SD card Fixing}
+
+\label{Ch7 Sec2 Sub1}
+
+Fixing the SD card functions, as described in section \ref{Ch6 Sec2 Sub2}, was where the first major issue in the project was encountered. This was due to the multiple branches of knowledge required to even verify id the SD card was working or not. Firstly, a knowledge of the VHDL files was required, in addition to this, knowledge of where the SD card was saving and reading from was required. This allowed me to understand how reading and writing was occuring. But to check that they were occuring correctly, I needed to understand and use assembly to quiery the CPU through the matrix mode commands. This allowed me to manually write, read and reset the SD card.
+
+\subsection{Hypervisor Trap}
+
+\label{Ch7 Sec2 Sub2}
+
+During the creation of the hypervisor trap for secure mode a communication error occurred between Dr. Gardner-Stephen and I. I believed that the hypervisor traps were all done in hardware, as there were hardware implementations for some hypervisor traps in the CPU. This was not the case, the majority of hypervisor traps were to be executed in software. This miscommunication resulted in a time loss on the project.
+
+\subsection{Secure mode Entry/Exit}
+
+\label{Ch7 Sec2 Sub3}
+
+
+
 %----------------------------------------------------------------------------------------
 %	SECTION 3
 %----------------------------------------------------------------------------------------
@@ -112,10 +132,10 @@ In addition to this, in the latest version of the phone, the SD card detecion no
 \end{itemize}
 
 \textit{How can the simplicity, understandability and hence, the security of these sub-systems be maximised?}\\
-blah
+When considering how to ensure the simplicity, understandability and security of each sub-system, it was decided that the UNIX philosophy should be employed. "Do one thing and do it well." This was employed in all aspects mentioned in this document. The matrix rain compositor only places the matrix video over the screen. When performing the secure mode proccess, only the secure mode trap is being acted upon, only save state function is occurring, only the user's input is being proccessed, etc. This philosophy removes the obscuration from performing tasks that may otherwise be complex. In addition to this, by using smaller and more simple sub-systems they are inherrantly more easily understood. 
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
-blah
+The MEGA65 architecture is implemented almost entirely on an FPGA device, because of this it is almost trivial to add the required sub-models to the board via headder pin connections.
 \\
 \textit{How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?}\\
 blah
