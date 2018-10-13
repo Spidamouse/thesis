@@ -13,6 +13,8 @@
 
 \section{Matrix Mode Operation}
 
+\label{Ch7 Sec1}
+
 When initially starting the project, matrix mode was in a unuseable state. The serial interface with the device was locked after input, only allowing a single character to be read. In addition to the locking, there were several visual issues that inhibited the function of matrix mode. While these issues were corrected over the course of the project, they did come with their own challenges along the way. 
 
 %-----------------------------------
@@ -20,13 +22,38 @@ When initially starting the project, matrix mode was in a unuseable state. The s
 %-----------------------------------
 \subsection{New Developer Issue}
 
+\label{Ch7 Sec1 Sub1}
+
 The biggest issue encountered when attempting to correct any of the parts of matrix mode was the lack of comments. This project has multiple developers in it and while some sections are well documented, there are some sections that are not obvious to new developers.\\
-In addition to the lack of foundation avaliable, the range of developemnt tools in use in this project requires an advanced knowledge of programming and hardware design. Thoughout this project the design language VHDL was the main language used, but despite this a detailed knowledge was required of Verilog and GS4510 assembly. As I had no knowledge of the latter two languages this made some sections of the project difficult to design.
+In addition to the lack of foundation avaliable, the range of developemnt tools in use in this project requires an advanced knowledge of programming and hardware design. Thoughout this project the design language VHDL was the main language used, but despite this a detailed knowledge was required of Verilog, GS4510 assembly, Vivado tool command language (tcl) and Make. As I had no knowledge of the latter languages this made some sections of the project difficult to design.\\
+Despite these challenges changes to the tcl, Make and Assembly files were able to be done and an understanding of the Verilog files was developed.
 
 %-----------------------------------
-%	SUBSECTION 1
+%	SUBSECTION 2
 %-----------------------------------
 \subsection{Serial Locking Issues}
+
+\label{Ch7 Sec1 Sub2}
+
+During the correction of the serial locking issue, correcting the offending code proved to be very challenging. As the MEGA65 did not have all the excessive resources of modern devices, after identifying the issue, it was difficult to implement a solution to the problem that was efficient. This lead to brainstorming of possible corrections and their security implications. In the end, the solution that was favoured was the edit code that was already present, adding the minimal amount of my own code. This issue was entirely overcome after implementing the first change to the MEGA65. Upon suggesting my change to Dr. Gardner-Stephen I was informed that any change made should be added to the project. This was as the optimisation of the device had not yet occurred, so any changes I make will inevitably be improved.  
+
+%-----------------------------------
+%	SUBSECTION 3
+%-----------------------------------
+\subsection{Letterboxing}
+
+\label{Ch7 Sec1 Sub3}
+
+During the correction of the visual issues in matrix mode through a letterbox signal, a lack of project knowledge proved to be very tough to overcome. This lack of knowledge resulted in several attempts to correct the issue through offsets and other, ultimately useless, tricks to move the terminal memory around. If a greater knowledge of the other sub-systems in the MEGA65 was possessed then the corrections to the device would have procceeded more rapidly.
+
+%-----------------------------------
+%	SUBSECTION 4
+%-----------------------------------
+\subsection{Visual Bug Chasing}
+
+\label{Ch7 Sec1 Sub4}
+
+During corrections to the visual bugs, the biggest challenges faced were the exposing of signals and understanding of what was happening. While running the hardware, exposure of the signals was difficult due to the limited amount of LEDs on the board. This made identification of some of the bugs slow. To combat this, GHDL, the VHDL simulator was used. This exposed the signals more readily as there were report statement littered through the project, this would make signal tracking trivial. GHDL, unfortunetly, did not provide a graphical display of what was occuring on the hardware, making discrimination of expected behaviour from unexpected behaviour difficult.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -34,11 +61,15 @@ In addition to the lack of foundation avaliable, the range of developemnt tools 
 
 \section{Secure Compartment Implementation}
 
+\label{Ch7 Sec2}
+
 %----------------------------------------------------------------------------------------
 %	SECTION 3
 %----------------------------------------------------------------------------------------
 
 \section{Research Question Satisfaction}
+
+\label{Ch7 Sec3}
 
 \textit{What are the missing or non-functional sub-systems that the MEGA65 requires to be implemented?}\\
 Over the course of the project, several missing and/or non-functional sub-systems were found within the MEGA65 smart phone. 
@@ -84,7 +115,7 @@ In addition to this, in the latest version of the phone, the SD card detecion no
 blah
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
-
+blah
 \\
 \textit{How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?}\\
 blah
