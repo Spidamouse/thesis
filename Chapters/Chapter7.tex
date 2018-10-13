@@ -13,12 +13,20 @@
 
 \section{Matrix Mode Operation}
 
+When initially starting the project, matrix mode was in a unuseable state. The serial interface with the device was locked after input, only allowing a single character to be read. In addition to the locking, there were several visual issues that inhibited the function of matrix mode. While these issues were corrected over the course of the project, they did come with their own challenges along the way. 
 
 %-----------------------------------
 %	SUBSECTION 1
 %-----------------------------------
-\subsection{Subsection 1}
+\subsection{New Developer Issue}
 
+The biggest issue encountered when attempting to correct any of the parts of matrix mode was the lack of comments. This project has multiple developers in it and while some sections are well documented, there are some sections that are not obvious to new developers.\\
+In addition to the lack of foundation avaliable, the range of developemnt tools in use in this project requires an advanced knowledge of programming and hardware design. Thoughout this project the design language VHDL was the main language used, but despite this a detailed knowledge was required of Verilog and GS4510 assembly. As I had no knowledge of the latter two languages this made some sections of the project difficult to design.
+
+%-----------------------------------
+%	SUBSECTION 1
+%-----------------------------------
+\subsection{Serial Locking Issues}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -76,7 +84,7 @@ In addition to this, in the latest version of the phone, the SD card detecion no
 blah
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
-blah
+
 \\
 \textit{How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?}\\
 blah
