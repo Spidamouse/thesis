@@ -8,7 +8,7 @@
 
 \section{Overview}
 
-In the following chapter the issues discovered in matrix mode are outlined, analysed and then the solutions to the problems are described. This begins with the serial interface locking issue and then moves onto the uart monitor, matrix mode compositor handshaking issue. The letterboxing implementation is then discussed and the chapter is ended with the smaller bug fixes to matrix mode.
+In the following chapter the issues discovered in matrix mode are outlined, analysed and then the solutions to the problems are described. This begins with the serial interface locking issue and then moves onto the UART monitor, matrix mode compositor handshaking issue. The letterboxing implementation is then discussed and the chapter is ended with the smaller bug fixes to matrix mode.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -80,7 +80,7 @@ One of the theorised causes for the serial locking issue was that the timing bet
 
 \label{Ch5 Sec1 Sub3}
 
-As the timing issues were cleared, it was determined that the locking issue must be an error in the handshaking rather than a signal error. Firstly the keycode data that was passed from the terminal emulator to the rain compositor, as well as the iomapper key data and terminal emulator state were examined. This was done via the seven segment display on the nexys4ddr development board, as seen in figure \ref{fig:segleddata}. This revealed that the correct data was being passed prior to matrix mode and even after the lock had occurred. Further more, it showed that the terminal emulator was getting stuck in the print banner stage, in which, a predefined string was sent to the rain compositor. This suggested that the rest of the terminal emulator was working correctly and it was the output function that was causing the issue. Removing the printing section from the print banner state resulted in the serial output not locking up upon leaving matrix mode. Instead, the serial ouput would only lock after the first character was sent to the screen.\\
+As the timing issues were cleared, it was determined that the locking issue must be an error in the handshaking rather than a signal error. Firstly the keycode data that was passed from the terminal emulator to the rain compositor, as well as the iomapper key data and terminal emulator state were examined. This was done via the seven segment display on the nexys4ddr development board, as seen in figure \ref{fig:segleddata}. This revealed that the correct data was being passed prior to matrix mode and even after the lock had occurred. Further more, it showed that the terminal emulator was getting stuck in the print banner stage, in which, a predefined string was sent to the rain compositor. This suggested that the rest of the terminal emulator was working correctly and it was the output function that was causing the issue. Removing the printing section from the print banner state resulted in the serial output not locking up upon leaving matrix mode. Instead, the serial output would only lock after the first character was sent to the screen.\\
 
 After further examining some of the flags associated with the output character function, it was noted that the terminal emulator would set two flags when sending characters, as seen in figure \ref{fig:outputchar}. The first is the character valid flag, it was observed to go high after a single character input and then never go low between subsequent inputs. This was also true for the second flag, the terminal emulator just sent flag. Looking for other instances of the both flags revealed that they were supposed to be reset while the terminal emulator was not ready, as seen in figure \ref{fig:termemureadyzero}. This terminal emulator ready flag was followed into the matrix rain compositor and it was discovered that the terminal emulator was only not ready when scrolling or when processing a character in the specific case seen in figure \ref{fig:termemureadytwo}. As these cases were correctly setting the terminal emulator to not ready when it was busy, the handshaking error was determined to be in the statement seen in figure \ref{fig:termemureadyzero}. Examining figure \ref{fig:termemureadyzero}, figure \ref{fig:termemureadytwo} and figure \ref{fig:outputchar} together, it can be seen that there is a logic clash when sending a character. The output character function sets the just sent and character valid flags high, which is then used to set the ready flag low, which is used to set the just sent and character valid flags low. This error was corrected by flipping the reset logic, as seen in figure \ref{fig:termemureadyone}. This resulted in matrix mode no longer locking up the serial input after processing a single character.
 
@@ -94,7 +94,7 @@ After further examining some of the flags associated with the output character f
 \begin{figure}
   \centering
   \includegraphics[width=\linewidth]{outputchar}
-  \caption{The output character function within the uart monitor subsystem.}
+  \caption{The output character function within the UART monitor subsystem.}
   \label{fig:outputchar}
 \end{figure}
 
@@ -330,7 +330,7 @@ When examining the characters displayed to the screen, as noted in figure \ref{f
 
 \label{Ch5 Sec3 Sub4}
 
-In collaboration with Dr. Gardner-Stephen, the junk characters seen at the bottom section of matrix mode, as seen if figure \ref{fig:letterbox}, were able to be restricted from the display. To perform this restriction of the output to the visible section of the screen, the row counter variable was used to determine if the current row was beyond the end of the matrix mode display. As seen in figure \ref{fig:letterboxfixtwo}, if the current row was beyond the end of the writeable matrix mode display, the vga input was darkened and passed out. This would hard code out any possibility of the matrix mode display being corrupted by junk characters being present in the terminal memory due to other faults.
+In collaboration with Dr. Gardner-Stephen, the junk characters seen at the bottom section of matrix mode, as seen if figure \ref{fig:letterbox}, were able to be restricted from the display. To perform this restriction of the output to the visible section of the screen, the row counter variable was used to determine if the current row was beyond the end of the matrix mode display. As seen in figure \ref{fig:letterboxfixtwo}, if the current row was beyond the end of the writable matrix mode display, the vga input was darkened and passed out. This would hard code out any possibility of the matrix mode display being corrupted by junk characters being present in the terminal memory due to other faults.
 
 \begin{figure}
   \centering
