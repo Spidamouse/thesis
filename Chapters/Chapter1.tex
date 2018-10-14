@@ -16,12 +16,9 @@ This began with the first computers that were the size of a small building, and 
 computers that were capable of easy exchange of data between them, initially by floppy disk, by modem or
 other forms of networking \cite{chen2004evolution}. 
 Essentially, whenever a means of communications was established between computers, worms, virii and other
-pathological software soon followed.   The pathological software was initially simple in nature, and
-could be easily detected and removed, and into the 1990s it was not uncommon to be able to obtain anti-virus
-software that could detect and remove all extant pathological software from a system.
-Figure \ref{fig:nortonad} shows an example advertisement from 1991, which explains that if users suspect
-the existence of a new virus, they can call a ``24-hour virus newsline'', betraying how relatively
-sedate the development and spread of computer virii was at that time.
+pathological software soon followed.   
+The pathological software was initially simple in nature, and could easily be detected and removed, and into the 1990s it was not uncommon to be able to obtain anti-virus software that could detect and remove all extant pathological software from a system.
+Figure \ref{fig:nortonad} shows an example advertisement from 1991, which explains that if users suspect the existence of a new virus, they can call a ''24-hour virus newsline'', betraying how relatively sedate the development and spread of computer virii was at that time.
 
 \begin{figure}
   \centering
@@ -35,7 +32,7 @@ sedate the development and spread of computer virii was at that time.
 
 The advent of ubuiquitous internet access marked a dramatic shift:  Where as previously viruses were mostly reliant on the
 movement of physical artefacts, such as floppy disks, the internet allowed for the infection of systems anywhere in the
-world, without coming into physical contact.
+world, without coming into physical contact \todo{Cite this}.
 That is, it introduced a new and highly effective transmission mode, that was all the more insidious in that in the floppy-era
 you could determine whether your computer might be at risk, based on whether it had been in contact through the insertion of
 a floppy disk.
@@ -49,8 +46,7 @@ world of biology \cite{antonovics2017evolution}.
 Indeed, what we see with computers now, is that the defences against these infectious threats have come to resemble the
 immune system of complex animals: A variety of intrinsic protections, heuristic measures and the development of immunity only
 after infection have become accepted norms for computer security.
-However, this is a dangerous situation, just as animals are made sick or die or are subverted by biological pathogens, e.g., Figure \ref{fig:antzombies}), the
-compromise of our digital systems has significant effects for individuals and society.  And just as it is impossible to quickly
+However, this is a dangerous situation, just as animals are made sick or die or are subverted by biological pathogens, e.g., Figure \ref{fig:antzombies}), the compromise of our digital systems has significant effects for individuals and society.  And just as it is impossible to quickly
 appraise whether an animal is free of all disease, it has become impossible to determine authoritatively whether a computer
 is free of all digital pathogens.
 
@@ -69,7 +65,17 @@ is free of all digital pathogens.
     
 \end{figure}
 
-Not only are there connections between pathogens and computer viruses in general, but eeriely enough, there are some computer viruses that behave almost identically to a biological counterpart. The Intel management engine is a small CPU that has been in almost all Intel chips for the past 18 years. Late in 2017, a proof of concept subversion on the Intel management engine was done by  Mark Ermolov and Maxim Goryachy \cite{Hackaday}. In this subversion, the engine was proved to be directly controlable with out being visible to the user, meaning that a hacker could potentially cause your machine to attack itself. This is the equivalent of an auto-immiune disease in the biological world, as the greater organism, whether that is man or machine, is being attacked by part of itself. The parallels do not stop here however, HIV/AIDS are immune system weakening diseases. These diseases are often not the cause of death themselves, but are often contributers \cite{ggHIV}. Much like these diseases, the "BadBIOS" phenomenon does not directly cause the death of a computer. This virus instead secretly and with out user authorisation, opens the communication channels of any computer it infects \cite{Reference5}. The similarities between "BadBIOS" and HIV/AIDS does not stop there, both are extremely resistant to treatment to the point where they are almost permanant. In the case of "BadBIOS" this infects the main program that controls all the actions of the computer. Because all other operations occur on the computer through this master program, there is no way to remove all of the infection which could be lurking anywhere \cite{Reference5}.
+Not only are there connections between pathogens and computer viruses in general, but eeriely enough, there are some computer viruses that behave almost identically to a biological counterpart. 
+The Intel management engine is a small CPU that has been in almost all Intel chips for the past 18 years. 
+Late in 2017, a proof of concept subversion on the Intel management engine was done by Mark Ermolov and Maxim Goryachy \cite{Hackaday}. In this subversion, the engine was proved to be directly controlable with out being visible to the user, meaning that a hacker could potentially cause your machine to attack itself. 
+This is the equivalent of an auto-immiune disease in the biological world, as the greater organism, whether that is man or machine, is being attacked by part of itself. 
+The parallels do not stop here however, HIV/AIDS are immune system weakening diseases. 
+These diseases are often not the cause of death themselves, but are often contributers \cite{ggHIV}. 
+Much like these diseases, the "BadBIOS" phenomenon does not directly cause the death of a computer. 
+This virus instead secretly and with out user authorisation, opens the communication channels of any computer it infects \cite{Reference5}. 
+The similarities between "BadBIOS" and HIV/AIDS does not stop there, both are extremely resistant to treatment to the point where they are almost permanant. 
+In the case of "BadBIOS" this infects the main program that controls all the actions of the computer. 
+Because all other operations occur on the computer through this master program, there is no way to remove all of the infection which could be lurking anywhere \cite{Reference5}.
 
 Were this not depressing enough, the problem is complicated by the fact that computers have, like biological organisms,
 become so complex, that it is impossible to construct them in such a way that they can effectively resist being subverted.
@@ -78,19 +84,19 @@ the control machinery of living cells -- that it is impossible to fully understa
 
 This problem has been compounded by Moore's Law \cite{Moore}, which has made it cheaper to create ever more complex computers, and
 by human psychology which have created an emphasis on the number of features or functions of a given piece of software, rather than
-on its correctness and security.  Thus software has exploded in size from kilo-bytes in the early 1980s to tens of giga-bytes in
-the current era. That is, software is now often millions of times larger and more complex than it once was, to the poinnt where
-verification of correctness has become effectively impossible.
+on its correctness and security.  
+Thus software has exploded in size from kilo-bytes in the early 1980s to tens of giga-bytes in the current era. 
+That is, software is now often millions of times larger and more complex than it once was, to the point where verification of correctness has become effectively impossible.
 
 As bad as this situation is for software, it is even worse when hardware systems are considered, and the central processing units
-(CPUs) of computers in particular.  CPUs have also grown in complexity from thousands of transistors to tens of billions of transistors
-over the same time period.  However, unlike a defect in software, a defect in a CPU cannot necessarily be corrected without physical
-replacement.
+(CPUs) of computers in particular.  
+CPUs have also grown in complexity from thousands of transistors to tens of billions of transistors over the same time period.  
+However, unlike a defect in software, a defect in a CPU cannot necessarily be corrected without physical replacement.
 
 The fact that the Spectre and MELTDOWN vulnerabilities existed in CPUs for almost 20 years before being discovered \cite{Spectacular}
 is strong evidence that we have long since passed the point where even a well-resourced company like Intel or AMD can ensure
-the correct operation of a CPU.  If these companies with many thousands of verification engineers cannot achieve it,
-what hope do individuals and small organisations have for verifying the correct operation of their computing devices?
+the correct operation of a CPU.  
+If these companies with many thousands of verification engineers cannot achieve it, what hope do individuals and small organisations have for verifying the correct operation of their computing devices?
 
 What is clear is that the problem is one of complexity: A single transistor can be easily verified. The simple early CPU designs
 like the 6502, that consisted of only a few thousand transistors can also be easily verified.  But modern complex CPU designs cannot.
