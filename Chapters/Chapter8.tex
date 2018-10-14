@@ -39,7 +39,20 @@ The missing and/or non-functional sub-systems of the MEGA65 are:
 \textit{How can these sub-systems be implemented?}\\
 These sub-systems can be implemented as follows:
 \begin{itemize}
-\item{balh}
+\item{Save state Saving and Loading}\\
+  The save and load states can be implemented in the place holder files. Since the supporting hardware has already been developed, all that is required is the assembly implementations.\\
+\item{Secure mode Saving and Loading}\\
+  The secure mode saving and loading require the implementation of the save state functions. Additionally, they require some of their own assembly code. This code is required in the hypervisor traps and, like the save states, already has the supporting hardware around it.\\
+\item{Secure mode "ACCEPT" and "REJECT" Implementation}\\
+  Much like the previous two points, the accepting and rejecting functionality only requires the software implementation.\\
+\item{SD card Read Protection}\\
+  This can be simply implemented through manipulation of the SD card software. Enabling a software SD card check can be done by reading the partition table and if it is corrupted, disallowing all further writes and reads. In hardware, a similar check could possibly be done, this depends on the functionality of the SD card controller.\\
+\item{CPU Lock Protection}\\
+  In order to prevent accidental locking of the CPU, matrix mode could be tied to the halting and resuming of the CPU.\\
+\item{Matrix mode Key Scanning}\\
+  The matrix mode key scanning can be implemented by implementing a working latch for the enter and exit key combinations. This latch should cause the iomapper to ignore the held version of these key combinations.\\
+\item{SDXC Compatability}\\
+  Adding SDXC support, such as reset, read and write protocols, to the existing SD card hardware wouldenable this functionality.\\ 
 \end{itemize}
 
 \textit{How can the simplicity, understandability and hence, the security of these sub-systems be maximised?}\\
