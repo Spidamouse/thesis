@@ -33,6 +33,7 @@ The missing and/or non-functional sub-systems of the MEGA65 are:
 \item{SD card Read Protection}
 \item{CPU Lock Protection}
 \item{Matrix mode Key Scanning}
+\item{SDXC Compatability}
 \end{itemize}
 
 \textit{How can these sub-systems be implemented?}\\
@@ -42,7 +43,7 @@ These sub-systems can be implemented as follows:
 \end{itemize}
 
 \textit{How can the simplicity, understandability and hence, the security of these sub-systems be maximised?}\\
-blah
+By implementing the sub-systems in accordance with the UNIX philosophy of "Do one thing and do it well.", it was possible to create highly understandable and secure units that are able to make up the whole that is the MEGA65
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
 The complete architecture of the MEGA65 was prototyped via an FPGA. This FPGA contained the all of the MEGA65 architecture and was supplemented by 3rd party hardware, such as the modem.
