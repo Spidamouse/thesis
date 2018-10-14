@@ -143,7 +143,23 @@ blah
 
 
 %----------------------------------------------------------------------------------------
-%	SECTION 2
+%	SECTION 4
 %----------------------------------------------------------------------------------------
 
 \section{Future Work}
+
+\label{Ch7 Sec4}
+
+Upon completion of the project tenure it is clear that there are still aspect of the project that are unfinished. In it's current state, the secure compartments and matrix mode of the MEGA65 are not ready for the final product of the smart phone.
+
+\subsection{Matrix mode}
+
+\label{Ch7 Sec4 Sub1}
+
+In addition to the changes, as described in chapter \ref{Chapter 5}, matrix mode requires some more attention to its functionality. In particular, the exiting of matrix mode with the super and ~ key should be further evauluated as to remove the bug where a ~ is printed upon exit. In addition to this the super and tab key latching should be looked at again. In the current implementation seen in section \ref{Ch6 Sec3 Sub1} a wait state is used between rescanning the keys. This should be replaced with a latching statement that will only scan the combination once and not scan that they are held down.
+
+\subsection{Secure mode}
+
+\label{Ch7 Sec4 Sub2}
+
+Secure mode requires lots of additional work in order to be ready for final version of the MEGA65. As described in section \ref{Ch6 Sec3 Sub2}, both of the save state functions, such as all of loading and some of saving, need to be implemented into the secure mode process. In addition to this the loading from the freeze commands also needs to be implemented so it can be used in the secure mode process. In addition to the save state, the "ACCEPT" and "REJECT" commands also require some more work in order for them to be fully functional. While both commands require modification to them based on the current secure mode state, "ACCEPT" only requires implementation of the secure mode exit case. "REJECT" requires a method for implementing the denial of entry into a secure container when entering secure mode. It also requires memory clearing capabilities when exiting a secure container.
