@@ -93,7 +93,7 @@ During implementation of the secure mode entry and exit the biggest challenge of
 
 \textit{What are the missing or non-functional sub-systems that the MEGA65 requires to be implemented?}\\
 Over the course of the project, several missing and/or non-functional sub-systems were found within the MEGA65 smart phone. 
-Of those sub-systems, the ones that were fixed are detailed in the previous chapters \todo{maybe reference these chapters} of this document. 
+Of those sub-systems, the ones that were fixed are detailed in chapters \ref{Chapter4}, \ref{Chapter 5} and \ref{Chapter 6} of this document. 
 Despite the fixes applied, there are still many sub-systems of the phone that require additional attention in order for them to function as intended.\\
 One of the functions of the phone is being able to create and load save states that are images of the phone at a particular point in time. 
 These save states are mostly functional, but there are still some strange cases, in which, their function causes issues for the user. 
@@ -105,7 +105,7 @@ In addition to the partition corrupting, the secure mode is also non-functional 
 The string comparison seen in figure \ref{fig:monitoracceptreject}, only compares the input to the upper case version of accept or reject. 
 While this could be intentional to ensure that the user truly desires the result, by entering reject in lower case an instruction is invoked. 
 This is due to the lower case 'r' character being an instructional prefix. 
-Another issue with secure mode is when successfully rejection secure compartments, when the SD card has been removed from the device there is currently no protection against reloading.\todo{Fix this sentence}
+Another issue with secure mode was when successfully rejecting secure compartments. When the SD card has been removed from the device, there is currently no protection to stop the phone from loading despite this.
 This causes the secure mode to load from nothing and produces unpredictable results.\\
 Although functionality to matrix mode has mostly been restored, it is not working entirely as intended. 
 From within matrix mode it is possible to halt and single step the CPU, if the CPU is halted, then a request to leave matrix mode is sent and stepped through, the user is left in user mode with a frozen CPU and no way to return to matrix mode.
