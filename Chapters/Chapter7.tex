@@ -81,7 +81,7 @@ During the creation of the hypervisor trap for secure mode a communication error
 
 \label{Ch7 Sec2 Sub3}
 
-
+During implementation of the secure mode entry and exit the biggest challenge of the project was encountered. The sequencing for events and interactions between the various sub-systems required very careful consideration. As discussed in section \ref{Ch6 Sec4 Sub1}, in order to eliminate the possibilites of exploitation control needed to be taken away from the user to make certain proccesses atomic.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
@@ -135,7 +135,7 @@ In addition to this, in the latest version of the phone, the SD card detecion no
 When considering how to ensure the simplicity, understandability and security of each sub-system, it was decided that the UNIX philosophy should be employed. "Do one thing and do it well." This was employed in all aspects mentioned in this document. The matrix rain compositor only places the matrix video over the screen. When performing the secure mode proccess, only the secure mode trap is being acted upon, only save state function is occurring, only the user's input is being proccessed, etc. This philosophy removes the obscuration from performing tasks that may otherwise be complex. In addition to this, by using smaller and more simple sub-systems they are inherrantly more easily understood. 
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
-The MEGA65 architecture is implemented almost entirely on an FPGA device, because of this it is almost trivial to add the required sub-models to the board via headder pin connections.
+When implementing the MEGA65 architecture there are only a few ways that it can be done. Insanely, the entire architecture could be prototyped on breadboards or prototyping specific circuit boards. This would require a monumental amount of work as to verify that devices are working correctly would have to be done manually and changes to the design would not be easily implemented. Another way would be to design a motherboard and have all the sub-modules as separate boards that all connect to the motherboard. This solution is not ideal for prototyping as the design of the boards is very difficult to modify, this also causes the time required to make changes excessively long. Conversly, this method would produce the highest quality product when compared with the other methods. The chosen method was to use an FPGA to map the MEGA65 hardware, which is then supplimented by specific hardware modules. This method makes changes to the design almost trivial to do and would even reduce the time taken to make them.
 \\
 \textit{How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?}\\
 blah
