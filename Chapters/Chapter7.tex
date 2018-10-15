@@ -138,8 +138,15 @@ In addition to this, in the latest version of the phone, the SD card detection n
 When considering how to ensure the simplicity, understandability and security of each sub-system, it was decided that the UNIX philosophy should be employed. "Do one thing and do it well." This was employed in all aspects mentioned in this document. The matrix rain compositor only places the matrix video over the screen. When performing the secure mode process, only the secure mode trap is being acted upon, only save state function is occurring, only the user's input is being processed, etc. This philosophy removes the obscuration from performing tasks that may otherwise be complex. In addition to this, by using smaller and more simple sub-systems they are inherently more easily understood. 
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
-When implementing the MEGA65 architecture there are only a few ways that it can be done. Insanely, the entire architecture could be prototyped on breadboards or prototyping specific circuit boards. This would require a monumental amount of work as to verify that devices are working correctly would have to be done manually and changes to the design would not be easily implemented. Another way would be to design a motherboard and have all the sub-modules as separate boards that all connect to the motherboard. This solution is not ideal for prototyping as the design of the boards is very difficult to modify, this also causes the time required to make changes excessively long. Conversely, this method would produce the highest quality product when compared with the other methods. The chosen method was to use an FPGA to map the MEGA65 hardware, which is then supplemented by specific hardware modules. This method makes changes to the design almost trivial to do and would even reduce the time taken to make them.
-\\
+When implementing the MEGA65 architecture there are only a few ways that it can be done. Insanely, the entire architecture could be prototyped on breadboards or prototyping specific circuit boards. This would require a monumental amount of work as to verify that devices are working correctly would have to be done manually and changes to the design would not be easily implemented. Another way would be to design a motherboard and have all the sub-modules as separate boards that all connect to the motherboard. This solution is not ideal for prototyping as the design of the boards is very difficult to modify, this also causes the time required to make changes excessively long. Conversely, this method would produce the highest quality product when compared with the other methods. The chosen method was to use an FPGA to map the MEGA65 hardware, which is then supplemented by specific hardware modules. This method makes changes to the design almost trivial to do and would even reduce the time taken to make them. The MEGA65's architecture can be seen prototyped in figure \ref{fig:satan}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{satan}
+  \caption{The MEGA65 bench prototype.}
+  \label{fig:satan}
+\end{figure}
+
 \textit{How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?}\\
 The planned secure architecture for the MEGA65 can be realised through the combination of hardware and software security protocols. The hardware sections of the compartment were used to perform atomic actions and restriction of access to the MEGA65.\\*
 The atomic actions of the phone include:
