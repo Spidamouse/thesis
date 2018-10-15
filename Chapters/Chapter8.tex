@@ -6,6 +6,8 @@
 
 \label{Chapter 8} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 
+\section{Overview}
+
 This final chapter will begin by going over the project as a whole and what was achieved during it. Then it will provide an evaluation against the motivation of the project to determine if what was achieved was in line with the aims. Finally, the research questions will be answered.
 
 %----------------------------------------------------------------------------------------
@@ -15,6 +17,8 @@ This final chapter will begin by going over the project as a whole and what was 
 \section{Paradise Restored?}
 
 \label{Ch8 Sec1}
+
+
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -33,7 +37,7 @@ The missing and/or non-functional sub-systems of the MEGA65 are:
 \item{SD card Read Protection}
 \item{CPU Lock Protection}
 \item{Matrix mode Key Scanning}
-\item{SDXC Compatability}
+\item{SDXC Compatibility}
 \end{itemize}
 
 \textit{How can these sub-systems be implemented?}\\
@@ -51,8 +55,8 @@ These sub-systems can be implemented as follows:
   In order to prevent accidental locking of the CPU, matrix mode could be tied to the halting and resuming of the CPU.\\
 \item{Matrix mode Key Scanning}\\
   The matrix mode key scanning can be implemented by implementing a working latch for the enter and exit key combinations. This latch should cause the iomapper to ignore the held version of these key combinations.\\
-\item{SDXC Compatability}\\
-  Adding SDXC support, such as reset, read and write protocols, to the existing SD card hardware wouldenable this functionality.\\ 
+\item{SDXC Compatibility}\\
+  Adding SDXC support, such as reset, read and write protocols, to the existing SD card hardware would enable this functionality.\\ 
 \end{itemize}
 
 \textit{How can the simplicity, understandability and hence, the security of these sub-systems be maximised?}\\
@@ -62,4 +66,4 @@ By implementing the sub-systems in accordance with the UNIX philosophy of "Do on
 The complete architecture of the MEGA65 was prototyped via an FPGA. This FPGA contained the all of the MEGA65 architecture and was supplemented by 3rd party hardware, such as the modem.
 \\
 \textit{How can the secure compartmentalisation's architecture planned for the MEGA65 be realised?}\\
-blah
+Through a combination of hardware and software the MEGA65's plan for secure compartments can be realised. The hardware can handle the actions that are desired to be atomic, as well as the disabling of data escaping mediums. The software can handle the actions that require user input and that are not atomic.
