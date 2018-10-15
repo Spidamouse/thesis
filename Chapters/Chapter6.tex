@@ -368,3 +368,12 @@ During the development of the secure compartments, a possible issue with the des
 \subsection{Monitor CPU}
 
 \label{Ch6 Sec4 Sub2}
+
+When using the monitor CPU it is especially important that the capabilities of this CPU be considered in terms of security. As erroneously allowing this CPU free access could undermine the security centric design of the MEGA65. With this in mind, the monitor CPU was handled as a servant CPU to the greater MEGA65 system. They key features of this CPU that makes it a servant rather than a service, is the manner in which it operates. The monitor CPU is entirely controlled by the user and only the user. As seen in figure \ref{fig:accepting input}, the monitor CPU has been implemented in a simple single loop. This loop only checks the protected hardware bits and scans pressed keys which are then acted upon. This results in the monitor CPU being entirely user controlled, as the only ways to interact with it are through the keyboard. In addition to being user controlled, this CPU has it's own memory entirely separate from the main CPU. This memory is also entirely write protected. The benefit of having the monitor CPU in its own ROM is that it is now more simple and therefore easily verified. Additionally, ROM can not be overwritten and thus the monitor CPU is immune to a wide range of malicious behaviour.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{acceptinginput}
+  \caption{The main monitor CPU execution loop.}
+  \label{fig:acceptinginput}
+\end{figure}
+
