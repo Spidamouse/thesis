@@ -8,7 +8,7 @@
 
 \section{Overview}
 
-This chapter describes the issues encountered prior to beginning development on answering the research questions posed in section \ref{Ch1 Sec2}. This section start by discussing why there were dependency issues experienced when starting the project. It then goes on to specifically identify the issues and the steps taken to correct these them. Then, in section \ref{Ch4 Sec2}, the issues that were experienced with fdisk are highlighted and the solution discussed. 
+This chapter describes the issues encountered prior to beginning development on answering the research questions posed in section \ref{Ch1 Sec2}. This section start by discussing why there were dependency issues experienced when starting the project. It then goes on to specifically identify the issues and the steps taken to correct these them. Then, in section \ref{Ch4 Sec2}, the issues that were experienced with fdisk are highlighted and the solution discussed. This chapter will end with the final thoughts about the issues encountered and the solutions given. 
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -71,3 +71,6 @@ In order to partition the MEGA65, the command line tool fdisk was created; this 
   \label{fig:fdisk}
 \end{figure}
 
+\section{Final Thoughts}
+
+During the start up of the project there were many dependency issues present. This was due to the multiple active branches of the project working at once. Because of this there was no uniform way, in which, the project could be made. In order to correct this issue several third party github repositories were added as sub-modules to the MEGA65 project. In addition, the makefile was changed to update the pathing to the tools used and to automatically download and update these new sub-modules when they were used.

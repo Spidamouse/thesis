@@ -8,7 +8,7 @@
 
 \section{Overview}
 
-In the following chapter the issues discovered in matrix mode are outlined, analysed and then the solutions to the problems are described. This begins with the serial interface locking issue and then moves onto the UART monitor, matrix mode compositor handshaking issue. The letterboxing implementation is then discussed and the chapter is ended with the smaller bug fixes to matrix mode.
+In the following chapter the issues discovered in matrix mode are outlined, analysed and then the solutions to the problems are described. This begins with the serial interface locking issue and then moves onto the UART monitor, matrix mode compositor handshaking issue. The letterboxing implementation is then discussed and followed by the smaller bug fixes to matrix mode. Finally, the thoughts on the work done in this chapter are given.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -383,3 +383,7 @@ After the letterbox implementation as described in section \ref{Ch5 Sec2}, it co
   \caption{The clean matrix mode display.}
   \label{fig:goodmm}
 \end{figure}
+
+\section{Final Thoughts}
+
+During the beginning of this project matrix mode was unusable. The changes made to it have now restored it to a working order as the serial interface is no longer disabled after leaving matrix mode. In addition to this, the changes made have resolved a lot of the graphical issues that were present. These changes include the restriction of the output to the writable section of the screen, the removal of the error character and character duplication. This resulted in making matrix mode more aesthetically pleasing to use. 

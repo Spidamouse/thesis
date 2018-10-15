@@ -18,9 +18,9 @@ This final chapter will begin by going over the project as a whole and what was 
 
 \label{Ch8 Sec1}
 
-Using the techniques described in chapter \ref{Chapter 4}, chapter \ref{Chapter 5} and chapter \ref{Chapter 6}, the MEGA65 project was made more developer friendly, matrix mode was corrected and secure compartmentilization was almost entirely implemented. New developers for the project are now able to more easily build and develop the MEGA65 through the use of a single make file. The MEGA65 is now able to successfully enter and exit matrix mode without disabling any functionality of the rest of the phone. In addition, all of the visual issues in matrix mode have been eliminated. The secure mode hypervisor trap has been implemented as well as some of the secure mode saving. The accpeting and rejecting of a secure container has also been partially implemented and the CPU halting a resuming has been fully implemented.\\
+Using the techniques described in chapter \ref{Chapter 4}, chapter \ref{Chapter 5} and chapter \ref{Chapter 6}, the MEGA65 project was made more developer friendly, matrix mode was corrected and secure compartmentalisation was almost entirely implemented. New developers for the project are now able to more easily build and develop the MEGA65 through the use of a single makefile. The MEGA65 is now able to successfully enter and exit matrix mode without disabling any functionality of the rest of the phone. In addition, all of the visual issues in matrix mode have been eliminated. The secure mode hypervisor trap has been implemented as well as some of the secure mode saving. The accepting and rejecting of a secure container has also been partially implemented and the CPU halting a resuming has been fully implemented.\\
 
-To truely restore paradise the following need to be implemented:
+To truly restore paradise, the following need to be implemented:
 \begin{itemize}
 \item{Matrix mode entering and exiting needs to be latched}
 \item{Matrix mode exiting needs to stop printing to the screen}
@@ -28,7 +28,11 @@ To truely restore paradise the following need to be implemented:
 \item{Secure mode entry needs to erase the RAM, ROM and io registers}
 \item{Secure mode entry needs to support rejecting entry to a secure container}
 \item{Secure mode exit needs to erase RAM, ROM and io registers}
+\item{SD card read protection}
+\item{SDXC Compatibility}
 \end{itemize}
+
+Overall, it can be seen that while significant progress has been made on the project, it is not entirely complete. The additions required and explained in this document will result in a production functional version of matrix mode and a functional version of secure mode. Additionally, it will extend functionality of the MEGA65 to SDXC cards and prevent reading from empty SD card slots.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2

@@ -56,7 +56,7 @@ During the correction of the visual issues in matrix mode through a letterbox si
 
 \label{Ch7 Sec1 Sub4}
 
-During corrections to the visual bugs, the biggest challenges faced were the exposing of signals and understanding of what was happening. While running the hardware, exposure of the signals was difficult due to the limited amount of LEDs on the board. This made identification of some of the bugs slow. To combat this, GHDL, the VHDL simulator was used. This exposed the signals more readily as there were report statement littered through the project, this would make signal tracking trivial. GHDL, unfortunately, did not provide a graphical display of what was occurring on the hardware, making discrimination of expected behaviour from unexpected behaviour difficult.
+During corrections to the visual bugs, the biggest challenges faced were the exposing of signals and understanding of what was happening. While running the hardware, exposure of the signals was difficult due to the limited amount of LEDs on the board. This made identification of some of the bugs slow. To combat this GHDL, a VHDL simulator, was used. This exposed the signals more readily as there were report statement littered through the project, this would make signal tracking trivial. GHDL, unfortunately, did not provide a graphical display of what was occurring on the hardware, making discrimination of expected behaviour from unexpected behaviour difficult.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
@@ -70,7 +70,7 @@ During corrections to the visual bugs, the biggest challenges faced were the exp
 
 \label{Ch7 Sec2 Sub1}
 
-Fixing the SD card functions, as described in section \ref{Ch6 Sec2 Sub2}, was where the first major issue in the project was encountered. This was due to the multiple branches of knowledge required to even verify id the SD card was working or not. Firstly, a knowledge of the VHDL files was required, in addition to this, knowledge of where the SD card was saving and reading from was required. This allowed me to understand how reading and writing was occurring. But to check that they were occurring correctly, I needed to understand and use assembly to query the CPU through the matrix mode commands. This allowed me to manually write, read and reset the SD card.
+Fixing the SD card functions, as described in section \ref{Ch6 Sec2 Sub2}, was where the first major issue in the project was encountered. This was due to the multiple branches of knowledge required to even verify id the SD card was working or not. Firstly, a knowledge of the VHDL files was required, in addition to this, knowledge of where the SD card was saving and reading from was also required. This allowed me to understand how reading and writing was occurring. But to check that they were occurring correctly, I needed to understand and use assembly to query the CPU through the matrix mode commands. This allowed me to manually write, read and reset the SD card.
 
 \subsection{Hypervisor Trap}
 
@@ -82,7 +82,7 @@ During the creation of the hypervisor trap for secure mode a communication error
 
 \label{Ch7 Sec2 Sub3}
 
-During implementation of the secure mode entry and exit the biggest challenge of the project was encountered. The sequencing for events and interactions between the various sub-systems required very careful consideration. As discussed in section \ref{Ch6 Sec4 Sub1}, in order to eliminate the possibilities of exploitation control needed to be taken away from the user to make certain processes atomic.
+During implementation of the secure mode entry and exit the biggest challenge of the project was encountered. The sequencing for events and interactions between the various sub-systems required very careful consideration. As discussed in section \ref{Ch6 Sec4 Sub1}, in order to eliminate the possibilities of exploitation, control needed to be taken away from the user to make certain processes atomic. This posed such a problem as my inexperience in security caused me to miss possible exploitation avenues. It was actually Dr. Gardner-Stephen that brought the issue of the user window between hypervisor and secure mode to my attention.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 3
@@ -115,21 +115,21 @@ When exiting from matrix mode with the secondary exit keycode, superkey + ~, the
 This is believed to be due to double scanning of the non-special input keys.\\
 
 When experimenting with the SD card compatibility, it was noted that the SDXC card was not recognised as an SD card at all. Investigation into the SD card hardware showed that there was no case for this type of card. 
-In addition to this, in the latest version of the phone, the SD card detection no longer rescans for the SD card if one is not initially detected.\\
+In addition to this, in the latest version of the phone, the SD card detection no longer rescans for the SD card if one is not initially detected upon start-up.\\
 \\
 \textit{How can these sub-systems be implemented?}\\
 \begin{itemize}
-\item{Load and Save Sate}\\
+\item{Save Sate}\\
   The save state partition table corruption issue should be solved by reviewing the location at which the save state is attempting to be saved to. 
   This location should be confirmed as save state slot. 
   Additionally, the size of the data being saved should be compared to the size of the save state slot to ensure that other data is not being overwritten.
 \item{ACCEPT/REJECT Strings}\\
   To ensure the secure compartment sub-system is functional and in accordance with the user's expectations, the lower case versions of accept and reject should also have the same functionality as the upper case versions. 
-  Conversely to this, if the accept and reject cases are restricted to upper case only, inputting a lower case version should send a warning to the user and, in the reject case, not throw a syntax error.
+  Conversely to this, if the accept and reject cases are restricted to upper case only, inputting a lower case version should send a warning to the user and, in the reject case, not attempt to execute a command.
 \item{CPU Locking}\\
   To prevent CPU locking and restore some functionality to matrix mode, exiting matrix mode should be tied into unfreezing the CPU.
 \item{SD card Protection}\\
-  To protect the SD card against loading junk data from the SD card slot when the SD card is removed, a fail state should be implemented when the attempting to load and no SD card is detected. This state should prompt the user to insert an SD card and specify the slot they wish to load from.
+ To protect against loading junk data from the SD card slot when there is no SD card present, a verification should occur prior to reading. If a fail state occurs, the MEGA65 should prompt the user to insert an SD card and specify the slot they wish to load from.
 \item{SDXC Support}\\
   The SDXC SD cards should have their data sheet evaluated and the functionality required to used them added to the SD card handling hardware.
 \end{itemize}
@@ -138,7 +138,7 @@ In addition to this, in the latest version of the phone, the SD card detection n
 When considering how to ensure the simplicity, understandability and security of each sub-system, it was decided that the UNIX philosophy should be employed. "Do one thing and do it well." This was employed in all aspects mentioned in this document. The matrix rain compositor only places the matrix video over the screen. When performing the secure mode process, only the secure mode trap is being acted upon, only save state function is occurring, only the user's input is being processed, etc. This philosophy removes the obscuration from performing tasks that may otherwise be complex. In addition to this, by using smaller and more simple sub-systems they are inherently more easily understood. 
 \\
 \textit{How can the complete MEGA65 architecture be physically prototyped on the bench?}\\
-When implementing the MEGA65 architecture there are only a few ways that it can be done. Insanely, the entire architecture could be prototyped on breadboards or prototyping specific circuit boards. This would require a monumental amount of work as to verify that devices are working correctly would have to be done manually and changes to the design would not be easily implemented. Another way would be to design a motherboard and have all the sub-modules as separate boards that all connect to the motherboard. This solution is not ideal for prototyping as the design of the boards is very difficult to modify, this also causes the time required to make changes excessively long. Conversely, this method would produce the highest quality product when compared with the other methods. The chosen method was to use an FPGA to map the MEGA65 hardware, which is then supplemented by specific hardware modules. This method makes changes to the design almost trivial to do and would even reduce the time taken to make them. The MEGA65's architecture can be seen prototyped in figure \ref{fig:satan}.
+When implementing the MEGA65 architecture there are only a few ways that it can be done. Insanely, the entire architecture could be prototyped on breadboards or prototyping specific circuit boards. This would require a monumental amount of work to verify that the devices are working correctly, would also have to be done manually and changes to the design would not be easily implemented. Another way would be to design a motherboard and have all the sub-modules as separate boards that all connect to it. This solution is not ideal for prototyping as the design of the boards is very difficult to modify, this also causes the time required to make changes excessively long. Conversely, this method would produce the highest quality product when compared with the other methods. The chosen method was to use an FPGA to map the MEGA65 hardware, which is then supplemented by specific hardware modules. This method makes changes to the design almost trivial to do and would even reduce the time taken to make them. The MEGA65's architecture can be seen prototyped in figure \ref{fig:satan}.
 
 \begin{figure}
   \centering
@@ -156,9 +156,9 @@ The atomic actions of the phone include:
 \item{CPU halting}
 \item{CPU resuming}
 \end{itemize}
-While in secure mode all of the external access ports, with the exception of the keyboard, as well as all of the internal wireless communication devices require that their access is restricted. This prevents the escaping of data from the container.\\
+While in secure mode all of the external access ports, with the exception of the keyboard, and all of the internal wireless communication devices were restricted from communication. This prevents the escaping of data from the container.\\
 
-The software section of the secure compartments were used to perform the actions that required user input, or were not atomic. The user input actions include the accepting or rejecting of entering or exiting the secure compartment. In addition to this, the specification of the secure service that is to be run must be done in software.\\
+The software section of the secure compartments were used to perform the actions that required user input, or were not atomic. The user input actions include the accepting/rejecting of entering/exiting the secure compartment. In addition to this, the specification of the secure service that is to be run must also be done in software.\\
 The non-atomic actions of the secure mode process include the saving and loading of the save states as well as the erasing of memory.
 \\
 
@@ -176,10 +176,10 @@ Upon completion of the project tenure it is clear that there are still aspect of
 
 \label{Ch7 Sec4 Sub1}
 
-In addition to the changes, as described in chapter \ref{Chapter 5}, matrix mode requires some more attention to its functionality. In particular, the exiting of matrix mode with the super and ~ key should be further evauluated as to remove the bug where a ~ is printed upon exit. In addition to this the super and tab key latching should be looked at again. In the current implementation seen in section \ref{Ch6 Sec3 Sub1} a wait state is used between rescanning the keys. This should be replaced with a latching statement that will only scan the combination once and not scan that they are held down.
+In addition to the changes, as described in chapter \ref{Chapter 5}, matrix mode requires some more attention to its functionality. In particular, the exiting of matrix mode with the super and ~ key should be further evaluated as to remove the bug where a ~ is printed upon exit. In addition to this the super and tab key latching should be looked at again. In the current implementation seen in section \ref{Ch6 Sec3 Sub1} a wait state is used between rescanning the keys. This should be replaced with a latching statement that will only scan the combination once and not scan when they are held down.
 
 \subsection{Secure mode}
 
 \label{Ch7 Sec4 Sub2}
 
-Secure mode requires lots of additional work in order to be ready for final version of the MEGA65. As described in section \ref{Ch6 Sec3 Sub2}, both of the save state functions, such as all of loading and some of saving, need to be implemented into the secure mode process. In addition to this the loading from the freeze commands also needs to be implemented so it can be used in the secure mode process. In addition to the save state, the "ACCEPT" and "REJECT" commands also require some more work in order for them to be fully functional. While both commands require modification to them based on the current secure mode state, "ACCEPT" only requires implementation of the secure mode exit case. "REJECT" requires a method for implementing the denial of entry into a secure container when entering secure mode. It also requires memory clearing capabilities when exiting a secure container.
+Secure mode requires lots of additional work in order to be ready for final version of the MEGA65. As described in section \ref{Ch6 Sec3 Sub2}, both of the save state functions, such as all of loading and some of saving, need to be implemented into the secure mode process. In addition to this the loading from the freeze commands also needs to be implemented so it can be used in the secure mode process. The "ACCEPT" and "REJECT" commands also require some more work in order for them to be fully functional. While both commands require modification to them based on the current secure mode state, "ACCEPT" only requires implementation of the secure mode exit case. "REJECT" requires a method for implementing the denial of entry into a secure container when entering secure mode. It also requires memory clearing capabilities when exiting a secure container.

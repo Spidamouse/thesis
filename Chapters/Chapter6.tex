@@ -9,7 +9,7 @@
 
 \section{Overview}
 
-This chapter goes over the frame work for how secure compartments will be implemented in the MEGA65. It will then discuss the problems encountered during the implementation of the secure compartments. Finally this chapter will talk about the possible issues with the secure compartments.
+This chapter goes over the frame work for how secure compartments will be implemented in the MEGA65. It will then discuss the problems encountered during the implementation of the secure compartments. This chapter will then talk about the possible issues with the secure compartments. The final thoughts on the issues encountered and the solutions given then ends this chapter.
 
 %----------------------------------------------------------------------------------------
 %	SECTION 1
@@ -366,7 +366,7 @@ Once either the "ACCEPT" or the "REJECT" actions have occurred and the CPU is ru
 
 \label{Ch6 Sec4 Sub1}
 
-During the development of the secure compartments, a possible issue with the design was made apparent. Originally, when entering or exiting secure mode, the hypervisor was in complete control of the phone's operation. This posed a problem thanks to the inability to transition between secure mode and the hypervisor instantaneously. Between the loading of the secure service and the entering of secure mode, there was a small window where the user was able to perform any actions they desired. To correct this issue, control over the halting of the CPU was given to the monitor and was performed while in the hypervisor trap. This allowed the halt to occur before leaving the hypervisor, locking the user out of running code in the small window.  At the same time to the monitor halting the CPU, the hypervisor is forced to return to user mode, as seen in figure \ref{fig:forcedfromhypervisor}. This system takes control away from the user and hypervisor, making the action of entering secure mode atomic. 
+During the development of the secure compartments, a possible issue with the design was made apparent by Dr. Gardner-Stephen. Originally, when entering or exiting secure mode, the hypervisor was in complete control of the phone's operation. This posed a problem thanks to the inability to transition between secure mode and the hypervisor instantaneously. Between the loading of the secure service and the entering of secure mode, there was a small window where the user was able to perform any actions they desired. To correct this issue, control over the halting of the CPU was given to the monitor and was performed while in the hypervisor trap. This allowed the halt to occur before leaving the hypervisor, locking the user out of running code in the small window.  At the same time to the monitor halting the CPU, the hypervisor is forced to return to user mode, as seen in figure \ref{fig:forcedfromhypervisor}. This system takes control away from the user and hypervisor, making the action of entering secure mode atomic. 
 
 \begin{figure}
   \centering
@@ -392,3 +392,8 @@ When using the monitor CPU it is especially important that the capabilities of t
   \label{fig:acceptinginput}
 \end{figure}
 
+\Section{Final Thoughts}
+
+The secure compartmentalisation of the MEGA65 has almost entirely been implemented in the hardware aspects. The hypervisor trap, secure mode entry/exit and monitor CPU have all been implemented successfully. The software side still requires some work. While the saving only requires the relevant software to be referenced, the loading has not even been started and the accepting/rejecting of secure compartments still needs their secondary cases implemented. Overall work is still required in these aspects for the secure compartmentalisation to be complete.\\
+
+In addition to this, any work done on the secure compartmentalisation should be done with a security focus. The hypervisor exiting is a great example of this security focus; instead of allowing it to exit naturally the CPU is stopped and it is forced out. This prevents anything from executing between the hypervisor and the entry to secure mode. The monitor CPU is another good example. It is as simple as it can be while performing the required tasks and only accepts input from the user.
